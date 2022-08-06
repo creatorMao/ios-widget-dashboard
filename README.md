@@ -1,6 +1,9 @@
 # dashboard
 一个ios小组件风格的仪表盘
 
+## 技术栈
+- Vue2
+
 ## TODO
 刚开始
 
