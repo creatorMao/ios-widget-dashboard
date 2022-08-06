@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <CountDown></CountDown>
+  <div class="dashboard">
+    <CountDown title="域名到期" expirationDate="2023-08-06"> </CountDown>
+    <CountDown title="下一贷款还款日" expirationDate="2024-08-06"> </CountDown>
   </div>
 </template>
 
@@ -22,4 +23,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.dashboard {
+  display: flex;
+  padding: 20px;
+}
+</style>
