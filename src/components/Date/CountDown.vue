@@ -25,6 +25,7 @@ export default {
   props: ['title', 'subTitle', 'date', 'dayList'],
   data() {
     return {
+      today: '',
       nextDate: ''
     }
   },
@@ -36,16 +37,16 @@ export default {
       return this.date
     },
     days: function () {
-      const today = this.$dayjs().format('YYYY-MM-DD')
       const todayNotHaveDay = this.$dayjs().format('YYYY-MM')
       if (this.date) {
-        return this.$dayjs(this.date).diff(today, 'hour') / 24
+        return this.$dayjs(this.date).diff(this.today, 'hour') / 24
       } else {
         let min = Number.MAX_SAFE_INTEGER
         this.dayList.forEach((item, index) => {
           if (item) {
             const day = todayNotHaveDay + '-' + item
-            const temp = this.$dayjs(day, 'YYYY-MM-DD').diff(today, 'hour') / 24
+            const temp =
+              this.$dayjs(day, 'YYYY-MM-DD').diff(this.today, 'hour') / 24
             if (temp >= 0) {
               if (temp < min) {
                 min = temp
@@ -59,7 +60,14 @@ export default {
     }
   },
   mounted() {},
-  methods: {}
+  created() {
+    this.refresh()
+  },
+  methods: {
+    refresh: function () {
+      this.today = this.$dayjs().format('YYYY-MM-DD')
+    }
+  }
 }
 </script>
 <style lang="less" scoped>

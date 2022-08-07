@@ -3,7 +3,7 @@
     <div class="component-contnet">
       <div class="title" v-if="title">
         <img :src="iconUrl" alt="" />
-        {{ title }}
+        <span :style="{ color: titleColor }">{{ title }}</span>
       </div>
       <div class="content">
         <slot name="default"></slot>
@@ -15,11 +15,10 @@
 <script>
 export default {
   name: 'BaseComponent',
-  props: ['title', 'iconUrl', 'size'],
+  props: ['title', 'titleColor', 'iconUrl', 'size'],
   data() {
     return {}
   },
-
   mounted() {},
 
   methods: {}

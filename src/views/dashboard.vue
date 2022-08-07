@@ -9,16 +9,9 @@
       </CountDown>
       <CountDown title="服务器到期" subTitle="118.xxxx" date="2022-09-08">
       </CountDown>
-      <TikTokDownloadStatus
-        size="big"
-        ref="tikTokDownloadStatus"
-      ></TikTokDownloadStatus>
-      <CommemorationDate
-        title="已失业"
-        date="2022-08-01"
-        ref="commemorationDate"
-      >
-      </CommemorationDate>
+      <TikTokDownloadStatus size="big"></TikTokDownloadStatus>
+      <CommemorationDate title="已失业" date="2022-08-01"> </CommemorationDate>
+      <TwitterFollowers></TwitterFollowers>
     </div>
   </div>
 </template>
@@ -27,28 +20,22 @@
 import CountDown from '@/components/Date/CountDown.vue'
 import TikTokDownloadStatus from '@/components/Status/TikTokDownloadStatus.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
+import TwitterFollowers from '@/components/Status/TwitterFollowers.vue'
 
 export default {
   name: 'DashBoard',
   components: {
     CountDown,
     TikTokDownloadStatus,
-    CommemorationDate
+    CommemorationDate,
+    TwitterFollowers
   },
-  created() {
-    this.timer = setInterval(() => {
-      // this.$refs.tikTokDownloadStatus.refresh()
-    }, 5000)
-  },
+  created() {},
 
   data() {
-    return {
-      componentsUpdateList: []
-    }
+    return {}
   },
-  beforeDestroy() {
-    clearTimeout(this.timer)
-  },
+  beforeDestroy() {},
 
   mounted() {},
 

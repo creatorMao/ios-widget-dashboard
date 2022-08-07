@@ -25,13 +25,16 @@ export default {
   props: ['title', 'subTitle', 'date'],
   data() {
     return {
-      nextDate: ''
+      today: ''
     }
+  },
+  created() {
+    this.refresh()
   },
   computed: {
     days: function () {
       return (
-        this.$dayjs(this.$dayjs().format('YYYY-MM-DD')).diff(
+        this.$dayjs(this.$dayjs(this.today).format('YYYY-MM-DD')).diff(
           this.date,
           'hour'
         ) / 24
@@ -39,7 +42,11 @@ export default {
     }
   },
   mounted() {},
-  methods: {}
+  methods: {
+    refresh: function () {
+      this.today = this.$dayjs().format('YYYY-MM-DD')
+    }
+  }
 }
 </script>
 <style lang="less" scoped>

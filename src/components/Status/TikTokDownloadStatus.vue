@@ -35,21 +35,21 @@ export default {
   data() {
     return {
       status: {
-        PHOTO_COUNT: '',
-        VIDEO_COUNT: '',
-        DOWNLOAD_TIME_COST: '',
-        IMP_TIME: ''
+        PHOTO_COUNT: '11', // TODO DELETE
+        VIDEO_COUNT: '222',
+        DOWNLOAD_TIME_COST: '11111',
+        IMP_TIME: '2022-08-09'
       }
     }
   },
   created() {
-    // this.refresh()
+    this.refresh()
   },
   mounted() {},
 
   methods: {
     refresh: function () {
-      this.$http.get('http://xxxxxxxxxx').then(
+      this.$http.get('xxx').then(
         (result) => {
           const { data: res } = result
           // console.log(res)
