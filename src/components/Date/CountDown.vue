@@ -3,9 +3,7 @@
     <div class="count-down">
       <div>距离{{ title }}还有</div>
       <div>
-        <span class="days">
-          {{ days }}
-        </span>
+        <span class="days"> {{ days }} 天 </span>
       </div>
       <div>{{ expirationDate }}</div>
     </div>
@@ -26,7 +24,12 @@ export default {
   },
   computed: {
     days: function () {
-      return this.$dayjs(this.expirationDate).diff(this.$dayjs().format('YYYY-MM-DD'), 'week') * 7
+      return (
+        this.$dayjs(this.expirationDate).diff(
+          this.$dayjs().format('YYYY-MM-DD'),
+          'week'
+        ) * 7
+      )
     }
   },
   mounted() {},
