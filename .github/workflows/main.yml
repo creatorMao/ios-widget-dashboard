@@ -25,7 +25,7 @@ jobs:
 
       # 2.安装依赖并打包
       - name: buildAndDeploy
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@dev
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages # 存放产物的分支名称
