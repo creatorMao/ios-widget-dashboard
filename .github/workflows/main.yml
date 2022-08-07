@@ -33,6 +33,5 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           branch: gh-pages # 存放产物的分支名称
           folder: dist # 存放build后产物的目录
