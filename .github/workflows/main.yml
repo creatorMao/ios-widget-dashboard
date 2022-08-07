@@ -20,14 +20,19 @@ jobs:
     # 一个job里，可以分为好多个步骤
     steps:
       # 1.先将代码拷贝到虚拟机里，这里使用了别人封装好的actions
-      - name: checkout
+      - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      # 2.安装依赖并打包
-      - name: buildAndDeploy
-        uses: JamesIves/github-pages-deploy-action@dev
-        env:
+      # 2.安装依赖，并打包
+      - name: Install and Build
+        run: |
+          npm install 🔧
+          npm run build
+
+      # 3.部署
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages # 存放产物的分支名称
-          FOLDER: dist # 存放build后产物的目录
-          BUILD_SCRIPT: npm install && npm run build # 执行的命令
+          branch: gh-pages # 存放产物的分支名称
+          folder: dist # 存放build后产物的目录
