@@ -24,9 +24,9 @@ jobs:
         uses: actions/checkout@v3
 
       # 2.安装依赖，并打包
-      - name: Install and Build
+      - name: Install and Build  🔧
         run: |
-          npm install 🔧
+          npm install
           npm run build
 
       # 3.部署
