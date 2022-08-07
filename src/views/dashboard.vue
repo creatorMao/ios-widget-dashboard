@@ -1,36 +1,53 @@
 <template>
   <div class="dashboard">
     <div class="dashboard-content">
-      <CountDown title="域名到期" subTitle="smart" expirationDate="2024-03-08">
+      <CountDown title="域名到期" subTitle="smart" date="2024-03-08">
       </CountDown>
-      <CountDown
-        title="域名到期"
-        subTitle="creator"
-        expirationDate="2022-11-28"
-      >
+      <CountDown title="域名到期" subTitle="creator" date="2022-11-28">
       </CountDown>
       <CountDown title="下一次学费还款" :dayList="['01', '19', '22']">
       </CountDown>
-      <CountDown
-        title="服务器到期"
-        subTitle="118.xxxx"
-        expirationDate="2022-09-08"
-      >
+      <CountDown title="服务器到期" subTitle="118.xxxx" date="2022-09-08">
       </CountDown>
+      <TikTokDownloadStatus
+        size="big"
+        ref="tikTokDownloadStatus"
+      ></TikTokDownloadStatus>
+      <CommemorationDate
+        title="已失业"
+        date="2022-08-01"
+        ref="commemorationDate"
+      >
+      </CommemorationDate>
     </div>
   </div>
 </template>
 
 <script>
 import CountDown from '@/components/Date/CountDown.vue'
+import TikTokDownloadStatus from '@/components/Status/TikTokDownloadStatus.vue'
+import CommemorationDate from '@/components/Date/CommemorationDate.vue'
 
 export default {
   name: 'DashBoard',
   components: {
-    CountDown
+    CountDown,
+    TikTokDownloadStatus,
+    CommemorationDate
   },
+  created() {
+    this.timer = setInterval(() => {
+      // this.$refs.tikTokDownloadStatus.refresh()
+    }, 5000)
+  },
+
   data() {
-    return {}
+    return {
+      componentsUpdateList: []
+    }
+  },
+  beforeDestroy() {
+    clearTimeout(this.timer)
   },
 
   mounted() {},

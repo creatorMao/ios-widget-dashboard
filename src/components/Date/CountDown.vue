@@ -9,7 +9,7 @@
         </span>
         <span class="days-text">天</span>
       </div>
-      <div>{{ date }}</div>
+      <div>{{ deadline }}</div>
     </div>
   </BaseComponent>
 </template>
@@ -22,24 +22,24 @@ export default {
   components: {
     BaseComponent
   },
-  props: ['title', 'subTitle', 'expirationDate', 'dayList'],
+  props: ['title', 'subTitle', 'date', 'dayList'],
   data() {
     return {
       nextDate: ''
     }
   },
   computed: {
-    date: function () {
+    deadline: function () {
       if (this.nextDate) {
         return this.nextDate
       }
-      return this.expirationDate
+      return this.date
     },
     days: function () {
       const today = this.$dayjs().format('YYYY-MM-DD')
       const todayNotHaveDay = this.$dayjs().format('YYYY-MM')
-      if (this.expirationDate) {
-        return this.$dayjs(this.expirationDate).diff(today, 'hour') / 24
+      if (this.date) {
+        return this.$dayjs(this.date).diff(today, 'hour') / 24
       } else {
         let min = Number.MAX_SAFE_INTEGER
         this.dayList.forEach((item, index) => {
