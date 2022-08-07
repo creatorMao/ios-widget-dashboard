@@ -3,7 +3,10 @@
     <div class="count-down">
       <div>距离{{ title }}还有</div>
       <div>
-        <span class="days"> {{ days }} 天 </span>
+        <span class="days">
+          {{ days }}
+        </span>
+        <span class="days-text">天</span>
       </div>
       <div>{{ expirationDate }}</div>
     </div>
@@ -14,7 +17,7 @@
 import BaseComponent from '@/components/Base/BaseComponent.vue'
 
 export default {
-  name: 'DashboardCountDown',
+  name: 'CountDown',
   components: {
     BaseComponent
   },
@@ -36,17 +39,19 @@ export default {
   methods: {}
 }
 </script>
-
 <style lang="less" scoped>
-.component {
-}
+@import '@/css/base.less';
+
 .count-down {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 13px;
+  font-size: (13 / @vw);
   .days {
-    font-size: 50px;
+    font-size: (50 / @vw);
+  }
+  .days-text {
+    font-size: (25 / @vw);
   }
 }
 </style>

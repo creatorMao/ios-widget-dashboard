@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'DashboardBaseComponent',
+  name: 'BaseComponent',
 
   data() {
     return {}
@@ -19,17 +19,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '@/css/base.less';
+
 .component {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: 200px;
-  height: 200px;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
+  width: (197 / @vw);
+  height: (197 / @vw);
+  padding: (10 / @vw);
+  margin: (10 / @vw);
+  border-radius: (25 / @vw);
   background-color: white;
 }
 </style>
