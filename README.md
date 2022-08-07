@@ -1,5 +1,6 @@
 # dashboard
-一个ios小组件风格的仪表盘 [预览地址](https://creatormao.github.io/dashboard/#/){:target="_blank"}
+一个ios小组件风格的仪表盘<a href="https://creatormao.github.io/dashboard/#/" target="_blank">预览地址</a>
+
 
 ## 技术栈
 - Vue2
