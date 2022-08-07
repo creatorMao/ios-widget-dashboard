@@ -1,16 +1,22 @@
 <template>
   <div class="dashboard">
     <div class="dashboard-content">
-      <CountDown title="域名到期" expirationDate="2023-08-06"> </CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
-      <CountDown title="下一贷款还款日" expirationDate="2024-08-06"></CountDown>
+      <CountDown title="域名到期" subTitle="smart" expirationDate="2024-03-08">
+      </CountDown>
+      <CountDown
+        title="域名到期"
+        subTitle="creator"
+        expirationDate="2022-11-28"
+      >
+      </CountDown>
+      <CountDown title="下一次学费还款" :dayList="['01', '19', '22']">
+      </CountDown>
+      <CountDown
+        title="服务器到期"
+        subTitle="118.xxxx"
+        expirationDate="2022-09-08"
+      >
+      </CountDown>
     </div>
   </div>
 </template>

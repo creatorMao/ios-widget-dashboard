@@ -1,14 +1,15 @@
 <template>
   <BaseComponent>
     <div class="count-down">
-      <div>距离{{ title }}还有</div>
+      <div>距{{ title }}</div>
+      <div clas="sub-title">{{ subTitle }}</div>
       <div>
         <span class="days">
           {{ days }}
         </span>
         <span class="days-text">天</span>
       </div>
-      <div>{{ expirationDate }}</div>
+      <div>{{ date }}</div>
     </div>
   </BaseComponent>
 </template>
@@ -21,18 +22,40 @@ export default {
   components: {
     BaseComponent
   },
-  props: ['title', 'expirationDate'],
+  props: ['title', 'subTitle', 'expirationDate', 'dayList'],
   data() {
-    return {}
+    return {
+      nextDate: ''
+    }
   },
   computed: {
+    date: function () {
+      if (this.nextDate) {
+        return this.nextDate
+      }
+      return this.expirationDate
+    },
     days: function () {
-      return (
-        this.$dayjs(this.expirationDate).diff(
-          this.$dayjs().format('YYYY-MM-DD'),
-          'week'
-        ) * 7
-      )
+      const today = this.$dayjs().format('YYYY-MM-DD')
+      const todayNotHaveDay = this.$dayjs().format('YYYY-MM')
+      if (this.expirationDate) {
+        return this.$dayjs(this.expirationDate).diff(today, 'hour') / 24
+      } else {
+        let min = Number.MAX_SAFE_INTEGER
+        this.dayList.forEach((item, index) => {
+          if (item) {
+            const day = todayNotHaveDay + '-' + item
+            const temp = this.$dayjs(day, 'YYYY-MM-DD').diff(today, 'hour') / 24
+            if (temp >= 0) {
+              if (temp < min) {
+                min = temp
+                this.nextDate = day
+              }
+            }
+          }
+        })
+        return min
+      }
     }
   },
   mounted() {},
@@ -46,12 +69,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: (13 / @vw);
+  font-size: (28 / @vw);
   .days {
-    font-size: (50 / @vw);
+    font-size: (80 / @vw);
+  }
+  .sub-title {
+    font-size: (24 / @vw);
   }
   .days-text {
-    font-size: (25 / @vw);
+    font-size: (30 / @vw);
   }
 }
 </style>

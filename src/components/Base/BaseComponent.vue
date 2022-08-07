@@ -27,11 +27,11 @@ export default {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: (197 / @vw);
-  height: (197 / @vw);
-  padding: (10 / @vw);
-  margin: (10 / @vw);
-  border-radius: (25 / @vw);
+  width: (210 * 1.3 / @vw);
+  height: (210 * 1.3 / @vw);
+  padding: (15 / @vw);
+  margin: (15 / @vw);
+  border-radius: (30 / @vw);
   background-color: white;
 }
 </style>
