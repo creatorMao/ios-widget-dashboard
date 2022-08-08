@@ -1,11 +1,6 @@
 <template>
   <div :class="`component component-${size}`">
-    <slot
-      name="default"
-      :headerData="headerData"
-      :extData="extData"
-      ref="component"
-    ></slot>
+    <slot name="default" :headerData="headerData" :extData="extData"></slot>
   </div>
 </template>
 
@@ -16,22 +11,33 @@ export default {
   data() {
     return {}
   },
-  mounted() {},
+  mounted() {
+    console.log(this)
+  },
   created() {
-    if (this.interval) {
+    const interval = this.interval
+    if (interval) {
       this.timer = setInterval(() => {
-        this.$refs.component.refresh()
-      }, this.interval)
+        this.refresh()
+      }, interval)
     } else {
       // 未设置定时器，则每天凌晨刷新一次。
       this.timer = setInterval(() => {
         if (this.$dayjs().format('HH-mm') === '00-00') {
-          this.$refs.component.refresh()
+          this.refresh()
         }
       }, 5000)
     }
   },
-  methods: {},
+  methods: {
+    refresh: function () {
+      this.$children.forEach((item) => {
+        if (item.refresh) {
+          item.refresh()
+        }
+      })
+    }
+  },
   beforeDestroy() {
     clearTimeout(this.timer)
   }

@@ -5,9 +5,10 @@
         v-for="item in componentList"
         :key="item.id"
         :size="item.size"
+        :interval="item.interval"
       >
         <component
-          :is="item.componentType"
+          :is="item.componentName"
           :headerData="item.headerData"
           :extData="item.extData"
         ></component>
@@ -39,7 +40,7 @@ export default {
       componentList: [
         {
           id: '1',
-          componentType: 'CountDown',
+          componentName: 'CountDown',
           extData: {
             title: '域名到期',
             subTitle: 'smart',
@@ -48,7 +49,7 @@ export default {
         },
         {
           id: '2',
-          componentType: 'CountDown',
+          componentName: 'CountDown',
           extData: {
             title: '域名到期',
             subTitle: 'creator',
@@ -57,7 +58,7 @@ export default {
         },
         {
           id: '3',
-          componentType: 'CountDown',
+          componentName: 'CountDown',
           extData: {
             title: '下一次学费还款',
             dayList: ['01', '19', '22']
@@ -65,7 +66,7 @@ export default {
         },
         {
           id: '4',
-          componentType: 'CountDown',
+          componentName: 'CountDown',
           extData: {
             title: '服务器到期',
             subTitle: '118.xxxx',
@@ -74,7 +75,7 @@ export default {
         },
         {
           id: '5',
-          componentType: 'TikTokDownloadStatus',
+          componentName: 'TikTokDownloadStatus',
           size: 'big',
           interval: 5000,
           extData: {
@@ -83,7 +84,7 @@ export default {
         },
         {
           id: '6',
-          componentType: 'CommemorationDate',
+          componentName: 'CommemorationDate',
           extData: {
             title: '已失业',
             date: '2022-08-01'
@@ -91,7 +92,7 @@ export default {
         },
         {
           id: '7',
-          componentType: 'TwitterFollowers',
+          componentName: 'TwitterFollowers',
           interval: 5000,
           extData: {
             api: 'http://xxx'
