@@ -11,9 +11,7 @@ export default {
   data() {
     return {}
   },
-  mounted() {
-    console.log(this)
-  },
+  mounted() {},
   created() {
     const interval = this.interval
     if (interval) {
