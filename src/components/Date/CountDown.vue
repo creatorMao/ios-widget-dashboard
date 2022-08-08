@@ -1,8 +1,8 @@
 <template>
-  <BaseComponent>
-    <div class="count-down">
-      <div>距{{ title }}</div>
-      <div clas="sub-title">{{ subTitle }}</div>
+  <div class="container">
+    <div class="content">
+      <div>距{{ extData.title }}</div>
+      <div clas="sub-title">{{ extData.subTitle }}</div>
       <div>
         <span class="days">
           {{ days }}
@@ -11,18 +11,14 @@
       </div>
       <div>{{ deadline }}</div>
     </div>
-  </BaseComponent>
+  </div>
 </template>
 
 <script>
-import BaseComponent from '@/components/Base/BaseComponent.vue'
-
 export default {
   name: 'CountDown',
-  components: {
-    BaseComponent
-  },
-  props: ['title', 'subTitle', 'date', 'dayList'],
+  components: {},
+  props: ['extData'],
   data() {
     return {
       today: '',
@@ -34,15 +30,15 @@ export default {
       if (this.nextDate) {
         return this.nextDate
       }
-      return this.date
+      return this.extData.date
     },
     days: function () {
       const todayNotHaveDay = this.$dayjs().format('YYYY-MM')
-      if (this.date) {
-        return this.$dayjs(this.date).diff(this.today, 'hour') / 24
+      if (this.extData.date) {
+        return this.$dayjs(this.extData.date).diff(this.today, 'hour') / 24
       } else {
         let min = Number.MAX_SAFE_INTEGER
-        this.dayList.forEach((item, index) => {
+        this.extData.dayList.forEach((item, index) => {
           if (item) {
             const day = todayNotHaveDay + '-' + item
             const temp =
@@ -72,11 +68,7 @@ export default {
 </script>
 <style lang="less" scoped>
 @import '@/css/base.less';
-
-.count-down {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.container {
   font-size: (28 / @vw);
   .days {
     font-size: (80 / @vw);

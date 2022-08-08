@@ -1,9 +1,7 @@
 <template>
-  <BaseComponent
-    title="关注者"
-    iconUrl="https://s3.bmp.ovh/imgs/2022/04/04/8bdbff42330cef61.png"
-  >
-    <div class="container">
+  <div class="container">
+    <Header :headerData="headerConfig"></Header>
+    <div class="content">
       <div>
         <span>
           {{ status.FOLLOWERS_COUNT_TEXT }}
@@ -12,25 +10,28 @@
           {{ changeText }}
         </span>
       </div>
-      <div class="update-time">{{ status.IMP_TIME }}</div>
     </div>
-  </BaseComponent>
+    <div class="update-time">{{ status.IMP_TIME }}</div>
+  </div>
 </template>
 
 <script>
-import BaseComponent from '@/components/Base/BaseComponent.vue'
+import Header from '@/components/Base/Header.vue'
 
 export default {
   name: 'TwitterFollowers',
-  components: {
-    BaseComponent
-  },
+  props: ['headerData', 'extData'],
+  components: { Header },
   data() {
     return {
+      headerConfig: {
+        title: '关注者',
+        iconUrl: 'https://s3.bmp.ovh/imgs/2022/04/04/8bdbff42330cef61.png'
+      },
       status: {
-        FOLLOWERS_COUNT: '11', // TODO DELETE
-        FOLLOWERS_COUNT_TEXT: '11',
-        FOLLOWERS_COUNT_CHANGE: '2'
+        FOLLOWERS_COUNT: '',
+        FOLLOWERS_COUNT_TEXT: '',
+        FOLLOWERS_COUNT_CHANGE: ''
       }
     }
   },
@@ -52,7 +53,7 @@ export default {
   mounted() {},
   methods: {
     refresh: function () {
-      this.$http.get('xxx').then(
+      this.$http.get(this.extData.api).then(
         (result) => {
           const { data: res } = result
           this.status = res

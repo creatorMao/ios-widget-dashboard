@@ -1,10 +1,7 @@
 <template>
-  <BaseComponent
-    title="抖音增量下载"
-    :size="size"
-    iconUrl="https://lf1-cdn-tos.bytegoofy.com/goofy/ies/douyin_web/public/favicon.ico"
-  >
-    <div class="container">
+  <div class="container">
+    <Header :headerData="headerConfig"></Header>
+    <div class="content">
       <div>
         视频:<span class="value">{{ status.VIDEO_COUNT }}</span>
       </div>
@@ -20,25 +17,30 @@
         下载于：<span class="value">{{ status.IMP_TIME }}</span>
       </div>
     </div>
-  </BaseComponent>
+  </div>
 </template>
 
 <script>
-import BaseComponent from '@/components/Base/BaseComponent.vue'
+import Header from '@/components/Base/Header.vue'
 
 export default {
   name: 'DashboardTikTokDownloadStatus',
   components: {
-    BaseComponent
+    Header
   },
-  props: ['size'],
+  props: ['headerData', 'extData'],
   data() {
     return {
+      headerConfig: {
+        title: '抖音增量下载',
+        iconUrl:
+          'https://lf1-cdn-tos.bytegoofy.com/goofy/ies/douyin_web/public/favicon.ico'
+      },
       status: {
-        PHOTO_COUNT: '11', // TODO DELETE
-        VIDEO_COUNT: '222',
-        DOWNLOAD_TIME_COST: '11111',
-        IMP_TIME: '2022-08-09'
+        PHOTO_COUNT: '',
+        VIDEO_COUNT: '',
+        DOWNLOAD_TIME_COST: '',
+        IMP_TIME: ''
       }
     }
   },
@@ -49,7 +51,7 @@ export default {
 
   methods: {
     refresh: function () {
-      this.$http.get('xxx').then(
+      this.$http.get(this.extData.api).then(
         (result) => {
           const { data: res } = result
           // console.log(res)

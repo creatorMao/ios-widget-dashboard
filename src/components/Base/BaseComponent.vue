@@ -1,31 +1,44 @@
 <template>
   <div :class="`component component-${size}`">
-    <div class="component-contnet">
-      <div class="title" v-if="title">
-        <img :src="iconUrl" alt="" />
-        <span :style="{ color: titleColor }">{{ title }}</span>
-      </div>
-      <div class="content">
-        <slot name="default"></slot>
-      </div>
-    </div>
+    <slot
+      name="default"
+      :headerData="headerData"
+      :extData="extData"
+      ref="component"
+    ></slot>
   </div>
 </template>
 
 <script>
 export default {
   name: 'BaseComponent',
-  props: ['title', 'titleColor', 'iconUrl', 'size'],
+  props: ['size', 'interval', 'headerData', 'extData'],
   data() {
     return {}
   },
   mounted() {},
-
-  methods: {}
+  created() {
+    if (this.interval) {
+      this.timer = setInterval(() => {
+        this.$refs.component.refresh()
+      }, this.interval)
+    } else {
+      // 未设置定时器，则每天凌晨刷新一次。
+      this.timer = setInterval(() => {
+        if (this.$dayjs().format('HH-mm') === '00-00') {
+          this.$refs.component.refresh()
+        }
+      }, 5000)
+    }
+  },
+  methods: {},
+  beforeDestroy() {
+    clearTimeout(this.timer)
+  }
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @import '@/css/base.less';
 
 .component {
@@ -36,26 +49,16 @@ export default {
   margin: (15 / @vw);
   border-radius: (30 / @vw);
   background-color: white;
-  .component-contnet {
+  .container {
     display: flex;
     flex-direction: column;
     height: 100%;
-    .title {
-      display: flex;
-      align-items: center;
-      font-size: (30 / @vw);
-      img {
-        width: (30 / @vw);
-        height: (30 / @vw);
-        margin-right: (10 / @vw);
-      }
-    }
     .content {
-      display: flex;
       flex: 1;
+      display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
   }
 }

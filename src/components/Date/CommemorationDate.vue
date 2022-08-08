@@ -1,28 +1,24 @@
 <template>
-  <BaseComponent>
-    <div class="count-down">
-      <div>{{ title }}</div>
-      <div clas="sub-title">{{ subTitle }}</div>
+  <div class="container">
+    <div class="content">
+      <div>{{ extData.title }}</div>
+      <div clas="sub-title">{{ extData.subTitle }}</div>
       <div>
         <span class="days">
           {{ days }}
         </span>
         <span class="days-text">天</span>
       </div>
-      <div>{{ date }}</div>
+      <div>{{ extData.date }}</div>
     </div>
-  </BaseComponent>
+  </div>
 </template>
 
 <script>
-import BaseComponent from '@/components/Base/BaseComponent.vue'
-
 export default {
   name: 'CommemorationDate',
-  components: {
-    BaseComponent
-  },
-  props: ['title', 'subTitle', 'date'],
+  components: {},
+  props: ['extData'],
   data() {
     return {
       today: ''
@@ -35,7 +31,7 @@ export default {
     days: function () {
       return (
         this.$dayjs(this.$dayjs(this.today).format('YYYY-MM-DD')).diff(
-          this.date,
+          this.extData.date,
           'hour'
         ) / 24
       )
@@ -52,10 +48,7 @@ export default {
 <style lang="less" scoped>
 @import '@/css/base.less';
 
-.count-down {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.container {
   font-size: (28 / @vw);
   .days {
     font-size: (80 / @vw);
