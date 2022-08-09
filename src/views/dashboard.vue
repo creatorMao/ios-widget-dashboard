@@ -23,7 +23,6 @@ import CountDown from '@/components/Date/CountDown.vue'
 import TikTokDownloadStatus from '@/components/Status/TikTokDownloadStatus.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
 import TwitterFollowers from '@/components/Status/TwitterFollowers.vue'
-
 export default {
   name: 'DashBoard',
   components: {
@@ -41,24 +40,25 @@ export default {
         {
           id: '1',
           componentName: 'CountDown',
+          size: 'small',
           extData: {
             title: '域名到期',
-            subTitle: 'smart',
             date: '2024-03-08'
           }
         },
         {
           id: '2',
           componentName: 'CountDown',
+          size: 'big',
           extData: {
             title: '域名到期',
-            subTitle: 'creator',
             date: '2022-11-28'
           }
         },
         {
           id: '3',
           componentName: 'CountDown',
+          size: 'small',
           extData: {
             title: '下一次学费还款',
             dayList: ['01', '19', '22']
@@ -67,27 +67,37 @@ export default {
         {
           id: '4',
           componentName: 'CountDown',
+          size: 'small',
           extData: {
             title: '服务器到期',
-            subTitle: '118.xxxx',
             date: '2022-09-08'
-          }
-        },
-        {
-          id: '5',
-          componentName: 'TikTokDownloadStatus',
-          size: 'big',
-          interval: 5000,
-          extData: {
-            api: 'http://xxx'
           }
         },
         {
           id: '6',
           componentName: 'CommemorationDate',
+          size: 'small',
           extData: {
             title: '已失业',
             date: '2022-08-01'
+          }
+        },
+        {
+          id: '9',
+          componentName: 'CountDown',
+          size: 'small',
+          extData: {
+            title: '域名到期',
+            date: '2022-11-28'
+          }
+        },
+        {
+          id: '8',
+          componentName: 'TikTokDownloadStatus',
+          size: 'big',
+          interval: 5000,
+          extData: {
+            api: 'sss'
           }
         },
         {
@@ -95,7 +105,71 @@ export default {
           componentName: 'TwitterFollowers',
           interval: 5000,
           extData: {
-            api: 'http://xxx'
+            api: 'sss'
+          }
+        },
+
+        {
+          id: '10',
+          componentName: 'CountDown',
+          size: 'small',
+          extData: {
+            title: '域名到期',
+            date: '2022-11-28'
+          }
+        },
+        {
+          id: '11',
+          componentName: 'CountDown',
+          size: 'small',
+          extData: {
+            title: '域名到期',
+            date: '2022-11-28'
+          }
+        },
+        {
+          id: '112',
+          componentName: 'CountDown',
+          size: 'small',
+          extData: {
+            title: '域名到期',
+            date: '2022-11-28'
+          }
+        },
+        {
+          id: '12',
+          componentName: 'CountDown',
+          size: 'small',
+          extData: {
+            title: '域名到期',
+            date: '2022-11-28'
+          }
+        },
+        {
+          id: '13',
+          componentName: 'CountDown',
+          size: 'small',
+          extData: {
+            title: '域名到期',
+            date: '2022-11-28'
+          }
+        },
+        {
+          id: '14',
+          componentName: 'CountDown',
+          size: 'small',
+          extData: {
+            title: '域名到期',
+            date: '2022-11-28'
+          }
+        },
+        {
+          id: '15',
+          componentName: 'CountDown',
+          size: 'big',
+          extData: {
+            title: '域名到期',
+            date: '2022-11-28'
           }
         }
       ]
@@ -110,8 +184,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '@/css/base.less';
-
 .dashboard {
   height: 100%;
   background: url('@/assets/dashboard-bg1.jpg');

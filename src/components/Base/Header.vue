@@ -22,15 +22,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '@/css/base.less';
 .title {
   display: flex;
   align-items: center;
-  font-size: (30 / @vw);
+  font-size: 1em;
   img {
-    width: (30 / @vw);
-    height: (30 / @vw);
-    margin-right: (10 / @vw);
+    width: 1em;
+    height: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
   }
 }
 </style>

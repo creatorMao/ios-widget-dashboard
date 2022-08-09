@@ -2,14 +2,11 @@
   <div class="container">
     <div class="content">
       <div>{{ extData.title }}</div>
-      <div clas="sub-title">{{ extData.subTitle }}</div>
-      <div>
-        <span class="days">
-          {{ days }}
-        </span>
-        <span class="days-text">天</span>
+      <div class="day">
+        <span class="day-value">{{ days }}</span>
+        <span class="day-text">天</span>
       </div>
-      <div>{{ extData.date }}</div>
+      <div class="footer">{{ extData.date }}</div>
     </div>
   </div>
 </template>
@@ -46,18 +43,21 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-@import '@/css/base.less';
-
 .container {
-  font-size: (28 / @vw);
-  .days {
-    font-size: (80 / @vw);
-  }
-  .sub-title {
-    font-size: (24 / @vw);
-  }
-  .days-text {
-    font-size: (30 / @vw);
+  .content {
+    .day {
+      margin: 0.2em 0em;
+      .day-value {
+        margin-right: 0.1em;
+        font-size: 2.5em;
+      }
+      .day-text {
+        font-size: 1.2em;
+      }
+    }
+    .footer {
+      font-size: 0.8em;
+    }
   }
 }
 </style>

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import dayjs from 'dayjs'
 import axios from 'axios'
-
+import './css/variable.less'
 Vue.config.productionTip = false
 Vue.prototype.$dayjs = dayjs
 Vue.prototype.$http = axios

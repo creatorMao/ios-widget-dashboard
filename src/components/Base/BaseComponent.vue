@@ -43,31 +43,38 @@ export default {
 </script>
 
 <style lang="less">
-@import '@/css/base.less';
-
 .component {
   box-sizing: border-box;
-  width: (210 * 1.3 / @vw);
-  height: (210 * 1.3 / @vw);
-  padding: (30 / @vw);
+  width: (200 / @vw);
+  height: (200 / @vw);
+  padding: (15 / @vw);
   margin: (15 / @vw);
   border-radius: (30 / @vw);
   background-color: white;
+  font-size: ((200 /10) / @vw);
   .container {
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
     .content {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      font-size: 1em;
     }
   }
 }
+.component-small {
+  width: (160 / @vw);
+  height: (160 / @vw);
+  font-size: ((160 /10) / @vw);
+}
 .component-big {
-  width: (210 * 1.3 * 1.5 / @vw);
-  height: (210 * 1.3 * 1.5 / @vw);
+  width: (250 / @vw);
+  height: (250 / @vw);
+  font-size: ((250 /10) / @vw);
 }
 </style>

@@ -3,15 +3,11 @@
     <Header :headerData="headerConfig"></Header>
     <div class="content">
       <div>
-        <span>
-          {{ status.FOLLOWERS_COUNT_TEXT }}
-        </span>
-        <span class="change">
-          {{ changeText }}
-        </span>
+        <span class="value">{{ status.FOLLOWERS_COUNT_TEXT }}</span>
+        <span class="change-direction">{{ changeText }}</span>
       </div>
+      <div class="update-time">{{ status.IMP_TIME }}</div>
     </div>
-    <div class="update-time">{{ status.IMP_TIME }}</div>
   </div>
 </template>
 
@@ -29,9 +25,10 @@ export default {
         iconUrl: 'https://s3.bmp.ovh/imgs/2022/04/04/8bdbff42330cef61.png'
       },
       status: {
-        FOLLOWERS_COUNT: '',
-        FOLLOWERS_COUNT_TEXT: '',
-        FOLLOWERS_COUNT_CHANGE: ''
+        FOLLOWERS_COUNT: '1', // TODO DELETE
+        FOLLOWERS_COUNT_TEXT: '111',
+        FOLLOWERS_COUNT_CHANGE: '11',
+        IMP_TIME: '2022-08-10 10:10:10'
       }
     }
   },
@@ -66,17 +63,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '@/css/base.less';
-
 .container {
-  font-size: (60 / @vw);
   text-align: center;
-  .change {
-    font-size: (25 / @vw);
+  color: #1d9bf0;
+  .value {
+    font-size: 2.5em;
+  }
+  .change-direction {
+    font-size: 1em;
   }
   .update-time {
-    margin-top: (20 / @vw);
-    font-size: (20 / @vw);
+    margin-top: 1.8em;
+    font-size: 0.7em;
   }
 }
 </style>
