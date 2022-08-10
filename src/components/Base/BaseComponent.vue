@@ -1,5 +1,5 @@
 <template>
-  <div :class="`component component-${size}`">
+  <div :class="`component component-${size || 'default'}`">
     <slot name="default" :headerData="headerData" :extData="extData"></slot>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default {
 <style lang="less">
 .component {
   box-sizing: border-box;
-  padding: (20 / @vw) (15 / @vw);
+  padding: (20 / @vw);
   margin: (15 / @vw);
   border-radius: (25 / @vw);
   background-color: white;
@@ -64,34 +64,41 @@ export default {
     }
   }
 }
-.component-default {
-  width: (200 / @vw);
-  height: (200 / @vw);
-  font-size: ((200 /10) / @vw);
-}
-.component-default-long {
-  width: (400 / @vw);
-  height: (200 / @vw);
-  font-size: ((200 /10) / @vw);
-}
+
+@size-small: 160;
+@size-default: 200;
+@size-big: 250;
+
 .component-small {
-  width: (160 / @vw);
-  height: (160 / @vw);
-  font-size: ((160 /10) / @vw);
+  width: (@size-small / @vw);
+  height: (@size-small / @vw);
+  font-size: ((@size-small / 10) / @vw);
 }
 .component-small-long {
-  width: (320 / @vw);
-  height: (160 / @vw);
-  font-size: ((160 /10) / @vw);
+  width: ((@size-small*2) / @vw);
+  height: (@size-small / @vw);
+  font-size: ((@size-small / 10) / @vw);
 }
+
+.component-default {
+  width: (@size-default / @vw);
+  height: (@size-default / @vw);
+  font-size: ((@size-default / 10) / @vw);
+}
+.component-default-long {
+  width: ((@size-default*2) / @vw);
+  height: (@size-default / @vw);
+  font-size: ((@size-default / 10) / @vw);
+}
+
 .component-big {
-  width: (240 / @vw);
-  height: (240 / @vw);
-  font-size: ((240 /10) / @vw);
+  width: (@size-big / @vw);
+  height: (@size-big / @vw);
+  font-size: ((@size-big / 10) / @vw);
 }
 .component-big-long {
-  width: (480 / @vw);
-  height: (240 / @vw);
-  font-size: ((200 /10) / @vw);
+  width: ((@size-big*2) / @vw);
+  height: (@size-big / @vw);
+  font-size: ((@size-big / 10) / @vw);
 }
 </style>

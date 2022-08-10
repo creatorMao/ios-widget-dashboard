@@ -67,7 +67,6 @@ export default {
         {
           id: '8',
           componentName: 'TikTokDownloadStatus',
-          size: 'big',
           interval: 5000,
           extData: {
             api: 'http:xxx'
@@ -76,7 +75,6 @@ export default {
         {
           id: '7',
           componentName: 'TwitterFollowers',
-          size: 'default',
           interval: 5000,
           extData: {
             api: 'http:xxx'
