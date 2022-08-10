@@ -2,33 +2,35 @@
   <div class="container">
     <Header :headerData="headerConfig"></Header>
     <div class="content">
-      <div>
+      <div class="item">
         视频:<span class="value">{{ status.VIDEO_COUNT }}</span
         >个
       </div>
-      <div>
+      <div class="item">
         图片:<span class="value">{{ status.PHOTO_COUNT }}</span
         >张
       </div>
-      <div>
+      <div class="item">
         耗时:<span class="value"
           >{{ (status.DOWNLOAD_TIME_COST / 60).toFixed(0) }}分钟</span
         >
       </div>
-      <div class="footer">
-        <span class="value">{{ status.IMP_TIME }}</span>
-      </div>
     </div>
+    <Footer>
+      <span>{{ status.IMP_TIME }}</span>
+    </Footer>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Base/Header.vue'
+import Footer from '@/components/Base/Footer.vue'
 
 export default {
   name: 'DashboardTikTokDownloadStatus',
   components: {
-    Header
+    Header,
+    Footer
   },
   props: ['headerData', 'extData'],
   data() {
@@ -70,9 +72,11 @@ export default {
 
 <style lang="less" scoped>
 .container {
-  .footer {
-    margin-top: (10 / @vw);
-    font-size: (20 / @vw);
+  .content {
+    .item {
+      font-size: 0.85em;
+      margin-bottom: 0.4em;
+    }
   }
 }
 </style>

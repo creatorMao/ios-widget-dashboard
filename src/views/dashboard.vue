@@ -47,39 +47,12 @@ export default {
           }
         },
         {
-          id: '2',
-          componentName: 'CountDown',
-          size: 'big',
-          extData: {
-            title: '域名到期',
-            date: '2022-11-28'
-          }
-        },
-        {
           id: '3',
           componentName: 'CountDown',
           size: 'small',
           extData: {
             title: '下一次学费还款',
             dayList: ['01', '19', '22']
-          }
-        },
-        {
-          id: '4',
-          componentName: 'CountDown',
-          size: 'small',
-          extData: {
-            title: '服务器到期',
-            date: '2022-09-08'
-          }
-        },
-        {
-          id: '6',
-          componentName: 'CommemorationDate',
-          size: 'small',
-          extData: {
-            title: '已失业',
-            date: '2022-08-01'
           }
         },
         {
@@ -97,22 +70,23 @@ export default {
           size: 'big',
           interval: 5000,
           extData: {
-            api: 'sss'
+            api: 'http:xxx'
           }
         },
         {
           id: '7',
           componentName: 'TwitterFollowers',
+          size: 'default',
           interval: 5000,
           extData: {
-            api: 'sss'
+            api: 'http:xxx'
           }
         },
 
         {
           id: '10',
           componentName: 'CountDown',
-          size: 'small',
+          size: 'default-long',
           extData: {
             title: '域名到期',
             date: '2022-11-28'
@@ -120,15 +94,6 @@ export default {
         },
         {
           id: '11',
-          componentName: 'CountDown',
-          size: 'small',
-          extData: {
-            title: '域名到期',
-            date: '2022-11-28'
-          }
-        },
-        {
-          id: '112',
           componentName: 'CountDown',
           size: 'small',
           extData: {
@@ -157,7 +122,7 @@ export default {
         {
           id: '14',
           componentName: 'CountDown',
-          size: 'small',
+          size: 'small-long',
           extData: {
             title: '域名到期',
             date: '2022-11-28'

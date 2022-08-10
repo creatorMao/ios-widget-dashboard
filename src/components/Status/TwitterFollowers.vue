@@ -1,29 +1,34 @@
 <template>
   <div class="container">
-    <Header :headerData="headerConfig"></Header>
+    <Header
+      :headerData="{
+        title: '关注者 ' + changeText,
+        iconUrl: 'https://s3.bmp.ovh/imgs/2022/04/04/8bdbff42330cef61.png'
+      }"
+    ></Header>
     <div class="content">
       <div>
         <span class="value">{{ status.FOLLOWERS_COUNT_TEXT }}</span>
-        <span class="change-direction">{{ changeText }}</span>
       </div>
-      <div class="update-time">{{ status.IMP_TIME }}</div>
     </div>
+    <Footer>
+      <span>
+        {{ status.IMP_TIME }}
+      </span>
+    </Footer>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Base/Header.vue'
+import Footer from '@/components/Base/Footer.vue'
 
 export default {
   name: 'TwitterFollowers',
   props: ['headerData', 'extData'],
-  components: { Header },
+  components: { Header, Footer },
   data() {
     return {
-      headerConfig: {
-        title: '关注者',
-        iconUrl: 'https://s3.bmp.ovh/imgs/2022/04/04/8bdbff42330cef61.png'
-      },
       status: {
         FOLLOWERS_COUNT: '1', // TODO DELETE
         FOLLOWERS_COUNT_TEXT: '111',
@@ -71,10 +76,6 @@ export default {
   }
   .change-direction {
     font-size: 1em;
-  }
-  .update-time {
-    margin-top: 1.8em;
-    font-size: 0.7em;
   }
 }
 </style>

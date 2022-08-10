@@ -45,13 +45,10 @@ export default {
 <style lang="less">
 .component {
   box-sizing: border-box;
-  width: (200 / @vw);
-  height: (200 / @vw);
-  padding: (15 / @vw);
+  padding: (20 / @vw) (15 / @vw);
   margin: (15 / @vw);
-  border-radius: (30 / @vw);
+  border-radius: (25 / @vw);
   background-color: white;
-  font-size: ((200 /10) / @vw);
   .container {
     display: flex;
     flex-direction: column;
@@ -67,14 +64,34 @@ export default {
     }
   }
 }
+.component-default {
+  width: (200 / @vw);
+  height: (200 / @vw);
+  font-size: ((200 /10) / @vw);
+}
+.component-default-long {
+  width: (400 / @vw);
+  height: (200 / @vw);
+  font-size: ((200 /10) / @vw);
+}
 .component-small {
   width: (160 / @vw);
   height: (160 / @vw);
   font-size: ((160 /10) / @vw);
 }
+.component-small-long {
+  width: (320 / @vw);
+  height: (160 / @vw);
+  font-size: ((160 /10) / @vw);
+}
 .component-big {
-  width: (250 / @vw);
-  height: (250 / @vw);
-  font-size: ((250 /10) / @vw);
+  width: (240 / @vw);
+  height: (240 / @vw);
+  font-size: ((240 /10) / @vw);
+}
+.component-big-long {
+  width: (480 / @vw);
+  height: (240 / @vw);
+  font-size: ((200 /10) / @vw);
 }
 </style>

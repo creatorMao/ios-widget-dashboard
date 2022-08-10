@@ -25,7 +25,7 @@ export default {
 .title {
   display: flex;
   align-items: center;
-  font-size: 1em;
+  font-size: 0.85em;
   img {
     width: 1em;
     height: 1em;
