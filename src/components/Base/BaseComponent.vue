@@ -9,7 +9,9 @@ export default {
   name: 'BaseComponent',
   props: ['size', 'interval', 'headerData', 'extData'],
   data() {
-    return {}
+    return {
+      timer: null
+    }
   },
   mounted() {},
   created() {
@@ -45,14 +47,17 @@ export default {
 <style lang="less">
 .component {
   box-sizing: border-box;
-  padding: (20 / @vw);
   margin: (15 / @vw);
   border-radius: (25 / @vw);
   background-color: white;
+  overflow: hidden;
+  word-break: break-all;
   .container {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     height: 100%;
+    padding: (20 / @vw);
     overflow: hidden;
     .content {
       flex: 1;

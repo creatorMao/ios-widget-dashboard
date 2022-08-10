@@ -55,13 +55,18 @@ export default {
   mounted() {},
   methods: {
     refresh: function () {
-      this.$http.get(this.extData.api).then(
-        (result) => {
-          const { data: res } = result
-          this.status = res
-        },
-        (res) => {}
-      )
+      const url = this.extData.api
+      if (url) {
+        this.$http.get(this.extData.api).then(
+          (result) => {
+            const { data: res } = result
+            this.status = res
+          },
+          (res) => {}
+        )
+      } else {
+        console.log('url无效')
+      }
     }
   }
 }

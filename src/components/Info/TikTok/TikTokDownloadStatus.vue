@@ -55,16 +55,21 @@ export default {
 
   methods: {
     refresh: function () {
-      this.$http.get(this.extData.api).then(
-        (result) => {
-          const { data: res } = result
-          // console.log(res)
-          this.status = res
-        },
-        (res) => {
-          // console.log(res)
-        }
-      )
+      const url = this.extData.api
+      if (url) {
+        this.$http.get(url).then(
+          (result) => {
+            const { data: res } = result
+            // console.log(res)
+            this.status = res
+          },
+          (res) => {
+            // console.log(res)
+          }
+        )
+      } else {
+        console.log('url无效')
+      }
     }
   }
 }

@@ -20,17 +20,20 @@
 <script>
 import BaseComponent from '@/components/Base/BaseComponent.vue'
 import CountDown from '@/components/Date/CountDown.vue'
-import TikTokDownloadStatus from '@/components/Status/TikTokDownloadStatus.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
-import TwitterFollowers from '@/components/Status/TwitterFollowers.vue'
+import TwitterFollowers from '@/components/Info/Twitter/TwitterFollowers.vue'
+import TikTokDownloadStatus from '@/components/Info/TikTok/TikTokDownloadStatus.vue'
+import GitHubRepoStars from '@/components/Info/Github/GitHubRepoStars.vue'
+
 export default {
   name: 'DashBoard',
   components: {
     BaseComponent,
     CountDown,
-    TikTokDownloadStatus,
     CommemorationDate,
-    TwitterFollowers
+    TikTokDownloadStatus,
+    TwitterFollowers,
+    GitHubRepoStars
   },
   created() {},
 
@@ -40,7 +43,6 @@ export default {
         {
           id: '1',
           componentName: 'CountDown',
-          size: 'small',
           extData: {
             title: '域名到期',
             date: '2024-03-08'
@@ -49,7 +51,6 @@ export default {
         {
           id: '3',
           componentName: 'CountDown',
-          size: 'small',
           extData: {
             title: '下一次学费还款',
             dayList: ['01', '19', '22']
@@ -58,7 +59,6 @@ export default {
         {
           id: '9',
           componentName: 'CountDown',
-          size: 'small',
           extData: {
             title: '域名到期',
             date: '2022-11-28'
@@ -67,72 +67,25 @@ export default {
         {
           id: '8',
           componentName: 'TikTokDownloadStatus',
-          interval: 5000,
+          interval: 1000 * 5,
           extData: {
-            api: 'http:xxx'
+            api: ''
           }
         },
         {
           id: '7',
           componentName: 'TwitterFollowers',
-          interval: 5000,
+          interval: 1000 * 5,
           extData: {
-            api: 'http:xxx'
-          }
-        },
-
-        {
-          id: '10',
-          componentName: 'CountDown',
-          size: 'default-long',
-          extData: {
-            title: '域名到期',
-            date: '2022-11-28'
+            api: ''
           }
         },
         {
-          id: '11',
-          componentName: 'CountDown',
-          size: 'small',
+          id: '81',
+          componentName: 'GitHubRepoStars',
+          interval: 1000 * 60 * 60,
           extData: {
-            title: '域名到期',
-            date: '2022-11-28'
-          }
-        },
-        {
-          id: '12',
-          componentName: 'CountDown',
-          size: 'small',
-          extData: {
-            title: '域名到期',
-            date: '2022-11-28'
-          }
-        },
-        {
-          id: '13',
-          componentName: 'CountDown',
-          size: 'small',
-          extData: {
-            title: '域名到期',
-            date: '2022-11-28'
-          }
-        },
-        {
-          id: '14',
-          componentName: 'CountDown',
-          size: 'small-long',
-          extData: {
-            title: '域名到期',
-            date: '2022-11-28'
-          }
-        },
-        {
-          id: '15',
-          componentName: 'CountDown',
-          size: 'big',
-          extData: {
-            title: '域名到期',
-            date: '2022-11-28'
+            repoFullName: ''
           }
         }
       ]
