@@ -5,7 +5,9 @@
         <img src="@/assets/github.png" alt="" />
       </div>
       <div>
-        <div class="stars-count">{{ res.stargazers_count }}</div>
+        <div class="stars-count">
+          {{ res.stargazers_count }}<img src="@/assets/star.png" alt="" />
+        </div>
         <div class="repo-name">
           {{ res.full_name }}
         </div>
@@ -67,6 +69,9 @@ export default {
     }
     .stars-count {
       font-size: 2.3em;
+      img {
+        width: 0.5em;
+      }
     }
     .repo-name {
       font-size: 0.9em;
