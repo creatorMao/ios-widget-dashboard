@@ -1,6 +1,8 @@
 # dashboard
 一个ios小组件风格的仪表盘
 
+A ios widget style dashboard
+
 <a href="https://creatormao.github.io/dashboard/#/" target="_blank">在线效果预览地址</a>
 
 
