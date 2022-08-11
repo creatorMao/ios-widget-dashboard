@@ -4,6 +4,15 @@ const config = {
   backgroundImg: bg1,
   componentList: [
     {
+      id: '11',
+      componentName: 'CommemorationDate',
+      size: 'big',
+      extData: {
+        title: '已失业',
+        date: '2022-08-01'
+      }
+    },
+    {
       id: '1',
       componentName: 'CountDown',
       size: 'big',
@@ -15,6 +24,7 @@ const config = {
     {
       id: '3',
       componentName: 'CountDown',
+      size: 'big',
       extData: {
         title: '下一次学费还款',
         dayList: ['01', '19', '22']
@@ -23,6 +33,7 @@ const config = {
     {
       id: '9',
       componentName: 'CountDown',
+      size: 'big',
       extData: {
         title: '域名到期',
         date: '2022-11-28'
@@ -32,6 +43,7 @@ const config = {
       id: '8',
       componentName: 'TikTokDownloadStatus',
       interval: 1000 * 5,
+      size: 'big',
       extData: {
         api: ''
       }
@@ -39,6 +51,7 @@ const config = {
     {
       id: '7',
       componentName: 'TwitterFollowers',
+      size: 'big',
       interval: 1000 * 5,
       extData: {
         api: ''

@@ -46,6 +46,7 @@ export default {
 
 <style lang="less">
 .component {
+  position: relative;
   box-sizing: border-box;
   margin: (15 / @vw);
   border-radius: (25 / @vw);
@@ -60,6 +61,7 @@ export default {
     padding: (20 / @vw);
     overflow: hidden;
     .content {
+      z-index: 2;
       flex: 1;
       display: flex;
       flex-direction: column;
