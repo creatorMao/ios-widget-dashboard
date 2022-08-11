@@ -5,6 +5,10 @@
 
 <a href="https://creatormao.github.io/dashboard/#/" target="_blank">效果预览地址</a>
 
+
+<img src="./src/assets/example.jpg"></img>
+
+
 ## 技术栈
 - Vue2
 - Less
