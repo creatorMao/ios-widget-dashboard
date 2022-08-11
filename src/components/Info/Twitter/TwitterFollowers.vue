@@ -13,6 +13,7 @@
     </div>
     <Footer>
       <span>
+        更新于:
         {{ status.IMP_TIME }}
       </span>
     </Footer>
@@ -33,11 +34,14 @@ export default {
         FOLLOWERS_COUNT: '1', // TODO DELETE
         FOLLOWERS_COUNT_TEXT: '111',
         FOLLOWERS_COUNT_CHANGE: '11',
-        IMP_TIME: '2022-08-10 10:10:10'
+        IMP_TIME: '10:10:10'
       }
     }
   },
   computed: {
+    updateTime: function () {
+      return this.$days(this.status.IMP_TIME).format('hh-mm-ss')
+    },
     changeText: function () {
       const change = this.status.FOLLOWERS_COUNT_CHANGE
       const changeIcon = parseInt(change) > 0 ? '↑' : '↓'
@@ -77,7 +81,7 @@ export default {
   text-align: center;
   color: #1d9bf0;
   .value {
-    font-size: 2.5em;
+    font-size: 3em;
   }
   .change-direction {
     font-size: 1em;

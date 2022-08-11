@@ -3,21 +3,25 @@
     <Header :headerData="headerConfig"></Header>
     <div class="content">
       <div class="item">
-        视频:<span class="value">{{ status.VIDEO_COUNT }}</span
-        >个
+        <div class="title">视频</div>
+        <div class="value">
+          {{ status.VIDEO_COUNT }}
+        </div>
       </div>
       <div class="item">
-        图片:<span class="value">{{ status.PHOTO_COUNT }}</span
-        >张
+        <div class="title">图片</div>
+        <div class="value">{{ status.PHOTO_COUNT }}</div>
       </div>
       <div class="item">
-        耗时:<span class="value"
-          >{{ (status.DOWNLOAD_TIME_COST / 60).toFixed(0) }}分钟</span
-        >
+        <div class="title">耗时</div>
+        <div class="value">
+          {{ (status.DOWNLOAD_TIME_COST / 60).toFixed(0) }}
+        </div>
       </div>
     </div>
     <Footer>
-      <span>{{ status.IMP_TIME }}</span>
+      更新于:
+      {{ status.IMP_TIME }}
     </Footer>
   </div>
 </template>
@@ -52,7 +56,11 @@ export default {
     this.refresh()
   },
   mounted() {},
-
+  computed: {
+    updateTime: function () {
+      return this.$days(this.status.IMP_TIME).format('hh-mm-ss')
+    }
+  },
   methods: {
     refresh: function () {
       const url = this.extData.api
@@ -77,10 +85,30 @@ export default {
 
 <style lang="less" scoped>
 .container {
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 35%;
+    left: -72%;
+    width: 150%;
+    height: 150%;
+    border-radius: 50%;
+    background-color: rgba(241, 219, 145, 1);
+  }
   .content {
+    flex-direction: row;
+    justify-content: space-around;
     .item {
-      font-size: 0.85em;
-      margin-bottom: 0.4em;
+      font-size: 0.8em;
+      text-align: center;
+      .title {
+        color: #6a6463;
+      }
+      .value {
+        margin-top: 0.1em;
+        font-size: 2.2em;
+      }
     }
   }
 }

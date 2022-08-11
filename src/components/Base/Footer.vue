@@ -21,6 +21,6 @@ export default {
 <style lang="less" scoped>
 .footer {
   text-align: center;
-  font-size: 0.7em;
+  font-size: 0.6em;
 }
 </style>

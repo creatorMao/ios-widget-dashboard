@@ -60,8 +60,12 @@ export default {
     height: 100%;
     padding: (20 / @vw);
     overflow: hidden;
-    .content {
+    .title,
+    .content,
+    .footer {
       z-index: 2;
+    }
+    .content {
       flex: 1;
       display: flex;
       flex-direction: column;
