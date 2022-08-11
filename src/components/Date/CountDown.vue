@@ -10,11 +10,11 @@
   >
     <div class="content">
       <div class="deadline">
-        <p>{{ deadline }}</p>
-        <p>星期三</p>
+        <p>{{ deadline.value }}</p>
+        <p class="day-text">{{ deadline.weekDayText }}</p>
       </div>
       <div>
-        <div class="title">{{ extData.title }}</div>
+        <div class="title">离{{ extData.title }}</div>
         <div class="days">{{ days }}<span class="days-text">天</span></div>
       </div>
     </div>
@@ -40,10 +40,18 @@ export default {
   },
   computed: {
     deadline: function () {
+      let date = ''
       if (this.nextDate) {
-        return this.nextDate
+        date = this.nextDate
+      } else {
+        date = this.extData.date
       }
-      return this.extData.date
+
+      const weekDay = ['日', '一', '二', '三', '四', '五', '六']
+      return {
+        value: date,
+        weekDayText: `星期${weekDay[this.$dayjs(date).day()]}`
+      }
     },
     days: function () {
       const todayNotHaveDay = this.$dayjs().format('YYYY-MM')
@@ -88,8 +96,13 @@ export default {
     align-items: flex-start;
     .deadline {
       padding: 0.4em 1em;
-      margin-top: 1em;
-      font-size: 0.3em;
+      margin-top: 0.3em;
+      font-size: 0.7em;
+      padding-left: 0;
+      padding-top: 0;
+      .day-text {
+        margin-top: 0.2em;
+      }
     }
     .title {
       font-size: 1em;

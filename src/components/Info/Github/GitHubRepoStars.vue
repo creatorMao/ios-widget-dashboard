@@ -34,10 +34,16 @@ export default {
   mounted() {},
   methods: {
     refresh: function () {
-      const repoFullName = this.extData.repoFullName
-      if (repoFullName) {
-        const url = `https://api.github.com/repos/${repoFullName}`
-        this.$http.get(url).then(
+      const { userName, repoName } = this.extData
+      if (!userName) {
+        console.log('用户名为空')
+        return
+      }
+
+      if (repoName) {
+        const api = `https://api.github.com/repos/${userName}/${repoName}`
+
+        this.$http.get(api).then(
           (result) => {
             const { data: res } = result
             this.res = res
@@ -46,7 +52,19 @@ export default {
           (res) => {}
         )
       } else {
-        console.log('repoFullName无效')
+        const api = `https://api.github-star-counter.workers.dev/user/${userName}`
+
+        this.$http.get(api).then(
+          (result) => {
+            const { data: res } = result
+            console.log(this.res)
+            this.res = {
+              stargazers_count: res.stars,
+              full_name: userName
+            }
+          },
+          (res) => {}
+        )
       }
     }
   }
@@ -59,12 +77,13 @@ export default {
   background-color: #111111;
   .content {
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
     .pic {
-      width: 2em;
-      height: 2em;
+      width: 100%;
       img {
-        width: 100%;
+        width: 2em;
+        height: 2em;
+        float: right;
       }
     }
     .stars-count {

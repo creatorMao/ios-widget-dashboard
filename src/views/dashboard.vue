@@ -43,6 +43,7 @@ export default {
         {
           id: '1',
           componentName: 'CountDown',
+          size: 'big',
           extData: {
             title: '域名到期',
             date: '2024-03-08'
@@ -83,9 +84,11 @@ export default {
         {
           id: '81',
           componentName: 'GitHubRepoStars',
+          size: 'big',
           interval: 1000 * 60 * 60,
           extData: {
-            repoFullName: ''
+            userName: '',
+            repoName: ''
           }
         }
       ]
