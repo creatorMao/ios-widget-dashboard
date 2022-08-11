@@ -3,7 +3,7 @@
 
 A ios widget style dashboard
 
-<a href="https://creatormao.github.io/dashboard/#/" target="_blank">在线效果预览地址</a>
+<a href="https://creatormao.github.io/ios-widget-dashboard/#/" target="_blank">在线效果预览地址</a>
 
 
 <img src="./src/assets/example.jpg"></img>
