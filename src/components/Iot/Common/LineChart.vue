@@ -9,11 +9,11 @@
       </div>
       <div class="footer">
         <div class="item">
-          <div class="value">{{ nowValue }}</div>
+          <div class="value" :style="{ color: color }">{{ nowValue }}</div>
           <div>Now</div>
         </div>
         <div class="item">
-          <div class="value">{{ maxValue }}</div>
+          <div class="value" :style="{ color: color }">{{ maxValue }}</div>
           <div>Max</div>
         </div>
       </div>
@@ -39,6 +39,9 @@ export default {
     })
   },
   computed: {
+    color: function () {
+      return this.extData.color || '#5470c6'
+    },
     nowValue: function () {
       const length = this.echartsData.length
       return length > 0 ? this.echartsData[length - 1].value[1].toFixed(1) : 0
@@ -107,6 +110,7 @@ export default {
             name: 'Fake Data',
             type: 'line',
             showSymbol: false,
+            color: this.color,
             data: this.echartsData
           }
         ]

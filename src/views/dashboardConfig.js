@@ -84,6 +84,7 @@ const config = {
       size: 'big',
       interval: 2000,
       extData: {
+        color: '#377880',
         title: '树莓派温度',
         unitText: '°C',
         maxLength: 50,
