@@ -53,7 +53,7 @@ export default {
     }
   },
   created() {
-    this.refresh()
+    this.refresh(true)
   },
   mounted() {},
   computed: {
@@ -62,7 +62,7 @@ export default {
     }
   },
   methods: {
-    refresh: function () {
+    refresh: function (firstFlag) {
       const url = this.extData.api
       if (url) {
         this.$http.get(url).then(
@@ -76,7 +76,9 @@ export default {
           }
         )
       } else {
-        console.log('url无效')
+        if (firstFlag) {
+          console.log('url无效')
+        }
       }
     }
   }

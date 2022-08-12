@@ -29,14 +29,16 @@ export default {
     }
   },
   created() {
-    this.refresh()
+    this.refresh(true)
   },
   mounted() {},
   methods: {
-    refresh: function () {
+    refresh: function (firstFlag) {
       const { userName, repoName } = this.extData
       if (!userName) {
-        console.log('用户名为空')
+        if (firstFlag) {
+          console.log('用户名为空')
+        }
         return
       }
 

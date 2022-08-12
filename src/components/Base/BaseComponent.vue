@@ -33,7 +33,7 @@ export default {
     refresh: function () {
       this.$children.forEach((item) => {
         if (item.refresh) {
-          item.refresh()
+          item.refresh(false)
         }
       })
     }

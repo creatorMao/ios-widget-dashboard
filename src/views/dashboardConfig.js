@@ -66,6 +66,28 @@ const config = {
         userName: '',
         repoName: ''
       }
+    },
+    {
+      id: '811',
+      componentName: 'LineChart',
+      size: 'big',
+      interval: 2000,
+      extData: {
+        title: '狗窝温度',
+        unitText: '°C',
+        api: ''
+      }
+    },
+    {
+      id: '8111',
+      componentName: 'LineChart',
+      size: 'big',
+      interval: 2000,
+      extData: {
+        title: '树莓派温度',
+        unitText: '°C',
+        api: ''
+      }
     }
   ]
 }

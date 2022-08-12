@@ -27,6 +27,7 @@ import CommemorationDate from '@/components/Date/CommemorationDate.vue'
 import TwitterFollowers from '@/components/Info/Twitter/TwitterFollowers.vue'
 import TikTokDownloadStatus from '@/components/Info/TikTok/TikTokDownloadStatus.vue'
 import GitHubRepoStars from '@/components/Info/Github/GitHubRepoStars.vue'
+import LineChart from '@/components/Iot/Common/LineChart.vue'
 import { config } from '@/views/dashboardConfig.js'
 
 export default {
@@ -37,7 +38,8 @@ export default {
     CommemorationDate,
     TikTokDownloadStatus,
     TwitterFollowers,
-    GitHubRepoStars
+    GitHubRepoStars,
+    LineChart
   },
   created() {
     this.config = config
