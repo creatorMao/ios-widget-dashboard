@@ -75,6 +75,7 @@ const config = {
       extData: {
         title: '狗窝温度',
         unitText: '°C',
+        maxLength: 20,
         api: ''
       }
     },
@@ -87,7 +88,7 @@ const config = {
         color: '#377880',
         title: '树莓派温度',
         unitText: '°C',
-        maxLength: 50,
+        maxLength: 20,
         api: ''
       }
     }

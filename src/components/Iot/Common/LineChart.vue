@@ -120,7 +120,7 @@ export default {
       })
     },
     addEchartsData: function (dataItem) {
-      if (this.echartsData.length === (this.extData.maxLength || 25)) {
+      if (this.echartsData.length === (this.extData.maxLength || 20)) {
         this.echartsData = this.echartsData.slice(1)
       }
       this.echartsData.push(dataItem)
