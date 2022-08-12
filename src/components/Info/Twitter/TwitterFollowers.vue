@@ -3,7 +3,7 @@
     <Header
       :headerData="{
         title: '关注者 ' + changeText,
-        iconUrl: 'https://s3.bmp.ovh/imgs/2022/04/04/8bdbff42330cef61.png'
+        iconUrl: twitterIcon
       }"
     ></Header>
     <div class="content">
@@ -23,6 +23,7 @@
 <script>
 import Header from '@/components/Base/Header.vue'
 import Footer from '@/components/Base/Footer.vue'
+import twitterIcon from '@/assets/twitter.png'
 
 export default {
   name: 'TwitterFollowers',
@@ -30,6 +31,7 @@ export default {
   components: { Header, Footer },
   data() {
     return {
+      twitterIcon,
       status: {
         FOLLOWERS_COUNT: '1', // TODO DELETE
         FOLLOWERS_COUNT_TEXT: '111',

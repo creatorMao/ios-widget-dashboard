@@ -29,6 +29,7 @@
 <script>
 import Header from '@/components/Base/Header.vue'
 import Footer from '@/components/Base/Footer.vue'
+import tiktokIcon from '@/assets/tiktok.png'
 
 export default {
   name: 'DashboardTikTokDownloadStatus',
@@ -41,8 +42,7 @@ export default {
     return {
       headerConfig: {
         title: '抖音增量下载',
-        iconUrl:
-          'https://lf1-cdn-tos.bytegoofy.com/goofy/ies/douyin_web/public/favicon.ico'
+        iconUrl: tiktokIcon
       },
       status: {
         PHOTO_COUNT: '12', // TODO DELETE
