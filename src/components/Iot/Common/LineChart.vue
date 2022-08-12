@@ -120,6 +120,15 @@ export default {
           }
         ]
       })
+      window.addEventListener('resize', () => {
+        this.echartsObj.resize()
+      })
+    },
+    addEchartsData: function (dataItem) {
+      if (this.echartsData.length === (this.extData.maxLength || 25)) {
+        this.echartsData = this.echartsData.slice(1)
+      }
+      this.echartsData.push(dataItem)
     },
     refresh: function (firstFlag) {
       const url = this.extData.api
@@ -129,7 +138,7 @@ export default {
         this.$http.get(url).then(
           (result) => {
             const { data: res } = result
-            this.echartsData.push({
+            this.addEchartsData({
               value: [this.$dayjs().format('YYYY-MM-DD HH:mm:ss'), res.value]
             })
           },
@@ -141,7 +150,7 @@ export default {
           console.log('url无效，正在模拟数据...')
         }
 
-        this.echartsData.push({
+        this.addEchartsData({
           value: [
             this.$dayjs().format('YYYY-MM-DD HH:mm:ss'),
             Math.random() * 10

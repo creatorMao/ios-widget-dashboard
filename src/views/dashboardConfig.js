@@ -86,6 +86,7 @@ const config = {
       extData: {
         title: '树莓派温度',
         unitText: '°C',
+        maxLength: 50,
         api: ''
       }
     }
