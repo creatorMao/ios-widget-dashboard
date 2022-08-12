@@ -65,16 +65,7 @@ export default {
           trigger: 'axis',
           formatter: function (params) {
             params = params[0]
-            const date = new Date(params.name)
-            return (
-              date.getDate() +
-              '/' +
-              (date.getMonth() + 1) +
-              '/' +
-              date.getFullYear() +
-              ' : ' +
-              params.value[1]
-            )
+            return `${params.value[1].toFixed(1)}`
           },
           axisPointer: {
             animation: false
