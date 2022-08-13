@@ -133,7 +133,7 @@ export default {
         this.$http.get(url).then(
           (result) => {
             const { data: res } = result // eslint-disable-line no-unused-vars
-            const value = eval(`res${this.extData.resultStructure}`)
+            const value = eval(`res${this.extData.valueStructurePath}`)
             // console.log(value)
             this.addEchartsData({
               value: [this.$dayjs().format('YYYY-MM-DD HH:mm:ss'), value]

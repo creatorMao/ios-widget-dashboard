@@ -73,11 +73,11 @@ const config = {
       size: 'big',
       interval: 5000,
       extData: {
-        title: '狗窝温度',
+        title: 'surface温度',
         unitText: '°C',
         maxLength: 20,
-        api: 'http://192.168.1.201:8888/api/cputemp',
-        resultStructure: "[0]['Sensors'][2]['Temp']"
+        api: 'http://192.168.1.201:8888/api/cpu/temp',
+        valueStructurePath: ".result[0]['Sensors'][2]['Temp']"
       }
     },
     {
