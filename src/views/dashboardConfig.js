@@ -71,12 +71,13 @@ const config = {
       id: '811',
       componentName: 'LineChart',
       size: 'big',
-      interval: 2000,
+      interval: 5000,
       extData: {
         title: '狗窝温度',
         unitText: '°C',
         maxLength: 20,
-        api: ''
+        api: 'http://192.168.1.201:8888/api/cputemp',
+        resultStructure: "[0]['Sensors'][2]['Temp']"
       }
     },
     {
