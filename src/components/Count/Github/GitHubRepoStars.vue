@@ -23,8 +23,8 @@ export default {
   data() {
     return {
       res: {
-        stargazers_count: 41, // TODO DELETE
-        full_name: 'creatorMao/TikTokDownloadTool'
+        stargazers_count: 0,
+        full_name: ''
       }
     }
   },
@@ -34,35 +34,37 @@ export default {
   mounted() {},
   methods: {
     refresh: function (firstFlag) {
-      const { userName, repoName } = this.extData
-      if (!userName) {
+      const { owner, repo, personalAccessToken } = this.extData
+      if (!owner) {
         if (firstFlag) {
           console.log('用户名为空')
         }
         return
       }
 
-      if (repoName) {
-        const api = `https://api.github.com/repos/${userName}/${repoName}`
+      if (repo) {
+        const octokit = new this.$Octokit({
+          auth: personalAccessToken
+        })
 
-        this.$http.get(api).then(
-          (result) => {
+        octokit
+          .request('GET /repos/{owner}/{repo}', {
+            owner: owner,
+            repo: repo
+          })
+          .then((result) => {
             const { data: res } = result
             this.res = res
-            console.log(this.res)
-          },
-          (res) => {}
-        )
+          })
       } else {
-        const api = `https://api.github-star-counter.workers.dev/user/${userName}`
+        const api = `https://api.github-star-counter.workers.dev/user/${owner}`
 
         this.$http.get(api).then(
           (result) => {
             const { data: res } = result
-            console.log(this.res)
             this.res = {
               stargazers_count: res.stars,
-              full_name: userName
+              full_name: owner
             }
           },
           (res) => {}

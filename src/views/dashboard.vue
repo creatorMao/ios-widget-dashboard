@@ -24,9 +24,11 @@
 import BaseComponent from '@/components/Base/BaseComponent.vue'
 import CountDown from '@/components/Date/CountDown.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
+import GitHubRepoStars from '@/components/Count/Github/GitHubRepoStars.vue'
+import GitHubRepoCloneTraffic from '@/components/Count/Github/GitHubRepoCloneTraffic.vue'
 import TwitterFollowers from '@/components/Count/Twitter/TwitterFollowers.vue'
 import TikTokDownloadStatus from '@/components/Count/TikTok/TikTokDownloadStatus.vue'
-import GitHubRepoStars from '@/components/Count/Github/GitHubRepoStars.vue'
+import CommonCount from '@/components/Count/Common/CommonCount.vue'
 import LineChart from '@/components/Iot/Common/LineChart.vue'
 import { config } from '@/views/dashboardConfig.js'
 
@@ -36,15 +38,16 @@ export default {
     BaseComponent,
     CountDown,
     CommemorationDate,
+    CommonCount,
     TikTokDownloadStatus,
     TwitterFollowers,
     GitHubRepoStars,
+    GitHubRepoCloneTraffic,
     LineChart
   },
   created() {
     this.config = config
   },
-
   data() {
     return {
       config: {}
