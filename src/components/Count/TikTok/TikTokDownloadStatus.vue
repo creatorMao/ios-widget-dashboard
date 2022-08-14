@@ -21,7 +21,7 @@
     </div>
     <Footer>
       更新于:
-      {{ status.IMP_TIME }}
+      {{ this.$dayjs(status.IMP_TIME).format('MM-DD HH:mm') }}
     </Footer>
   </div>
 </template>
