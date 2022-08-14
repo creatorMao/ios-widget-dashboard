@@ -61,16 +61,17 @@ export default {
     }
     .title {
       text-align: left;
+      font-size: 0.9em;
     }
     .footer {
       text-align: right;
       .value-wrap {
         .value {
-          font-size: 3em;
+          font-size: 3.4em;
         }
       }
       .update-time {
-        font-size: 0.6em;
+        font-size: 0.7em;
       }
     }
   }
