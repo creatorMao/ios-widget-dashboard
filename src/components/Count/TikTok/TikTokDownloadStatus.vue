@@ -52,9 +52,7 @@ export default {
       }
     }
   },
-  created() {
-    this.refresh(true)
-  },
+  created() {},
   mounted() {},
   computed: {
     updateTime: function () {

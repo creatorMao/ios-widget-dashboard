@@ -20,9 +20,7 @@ export default {
       today: ''
     }
   },
-  created() {
-    this.refresh()
-  },
+  created() {},
   computed: {
     days: function () {
       return (

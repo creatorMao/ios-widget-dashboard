@@ -72,7 +72,7 @@ const config = {
       id: '811',
       componentName: 'LineChart',
       size: 'default',
-      interval: 1000 * 60,
+      interval: 1000 * 10,
       extData: {
         title: 'surface温度',
         unitText: '°C',
@@ -85,7 +85,7 @@ const config = {
       id: '8111',
       componentName: 'LineChart',
       size: 'default',
-      interval: 1000 * 60,
+      interval: 1000 * 1,
       extData: {
         color: '#377880',
         title: '树莓派温度',
@@ -98,7 +98,7 @@ const config = {
       id: '999',
       componentName: 'GitHubRepoCloneTraffic',
       size: 'default',
-      interval: 1000 * 60,
+      interval: 1000 * 60 * 60,
       extData: {
         personalAccessToken: '',
         owner: 'creatorMao',

@@ -6,6 +6,7 @@
       ...extData,
       title: this.title
     }"
+    :updateTimeShort="updateTimeShort"
   ></CommonCount>
 </template>
 
@@ -20,16 +21,18 @@ export default {
   data() {
     return {
       value: 0,
-      title: '近14天项目clone数'
+      title: '近14天项目clone数',
+      updateTimeShort: ''
     }
   },
-  created() {
-    this.refresh(true)
-  },
+  created() {},
   mounted() {},
   methods: {
-    refresh: function (firstFlag) {
+    refresh: function (firstFlag, { updateTimeShort } = {}) {
+      this.updateTimeShort = updateTimeShort
+
       const { owner, repo, personalAccessToken } = this.extData
+
       if (!owner) {
         if (firstFlag) {
           console.log('用户名为空')

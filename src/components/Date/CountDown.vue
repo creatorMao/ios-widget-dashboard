@@ -77,9 +77,7 @@ export default {
     }
   },
   mounted() {},
-  created() {
-    this.refresh()
-  },
+  created() {},
   methods: {
     refresh: function () {
       this.today = this.$dayjs().format('YYYY-MM-DD')

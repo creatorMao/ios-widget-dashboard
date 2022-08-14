@@ -13,7 +13,9 @@ export default {
       timer: null
     }
   },
-  mounted() {},
+  mounted() {
+    this.refresh(true)
+  },
   created() {
     const interval = this.interval
     if (interval) {
@@ -30,10 +32,18 @@ export default {
     }
   },
   methods: {
+    getUpdateTime: function () {
+      const updateTime = this.$dayjs()
+      return {
+        updateTime,
+        updateTimeLong: updateTime.format('YYYY-MM-DD HH:mm:ss'),
+        updateTimeShort: updateTime.format('HH:mm:ss')
+      }
+    },
     refresh: function () {
       this.$children.forEach((item) => {
         if (item.refresh) {
-          item.refresh(false)
+          item.refresh(false, this.getUpdateTime())
         }
       })
     }

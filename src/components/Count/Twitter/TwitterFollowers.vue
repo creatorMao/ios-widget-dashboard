@@ -55,9 +55,7 @@ export default {
       return changeText
     }
   },
-  created() {
-    this.refresh(true)
-  },
+  created() {},
   mounted() {},
   methods: {
     refresh: function (firstFlag) {

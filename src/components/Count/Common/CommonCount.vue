@@ -6,7 +6,7 @@
         <div class="value-wrap">
           <span class="value">{{ value || currentValue }}</span>
         </div>
-        <div class="update-time">{{ '更新于:15:26:12' }}</div>
+        <div class="update-time">更新于{{ updateTimeShort || updateTime }}</div>
       </div>
     </div>
   </div>
@@ -15,18 +15,19 @@
 <script>
 export default {
   name: 'DashboardCommonCount',
-  props: ['extData', 'value', 'childFlag'],
+  props: ['extData', 'value', 'childFlag', 'updateTimeShort'],
   data() {
     return {
-      currentValue: 0
+      currentValue: 0,
+      updateTime: ''
     }
   },
-  created() {
-    this.refresh(true)
-  },
+  created() {},
   mounted() {},
   methods: {
-    refresh: function (firstFlag) {
+    refresh: function (firstFlag, { updateTimeShort } = {}) {
+      this.updateTime = updateTimeShort
+
       if (this.childFlag) {
         return
       }

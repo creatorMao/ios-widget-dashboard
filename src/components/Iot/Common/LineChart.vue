@@ -30,9 +30,7 @@ export default {
       echartsData: []
     }
   },
-  created() {
-    this.refresh(true)
-  },
+  created() {},
   mounted() {
     this.$nextTick(() => {
       this.initChart()
