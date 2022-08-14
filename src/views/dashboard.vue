@@ -24,9 +24,9 @@
 import BaseComponent from '@/components/Base/BaseComponent.vue'
 import CountDown from '@/components/Date/CountDown.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
-import TwitterFollowers from '@/components/Info/Twitter/TwitterFollowers.vue'
-import TikTokDownloadStatus from '@/components/Info/TikTok/TikTokDownloadStatus.vue'
-import GitHubRepoStars from '@/components/Info/Github/GitHubRepoStars.vue'
+import TwitterFollowers from '@/components/Count/Twitter/TwitterFollowers.vue'
+import TikTokDownloadStatus from '@/components/Count/TikTok/TikTokDownloadStatus.vue'
+import GitHubRepoStars from '@/components/Count/Github/GitHubRepoStars.vue'
 import LineChart from '@/components/Iot/Common/LineChart.vue'
 import { config } from '@/views/dashboardConfig.js'
 
