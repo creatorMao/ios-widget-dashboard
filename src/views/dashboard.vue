@@ -17,11 +17,15 @@
         ></component>
       </BaseComponent>
     </div>
+    <div class="battery">
+      <Battery></Battery>
+    </div>
   </div>
 </template>
 
 <script>
 import BaseComponent from '@/components/Base/BaseComponent.vue'
+import Battery from '@/components/Base/Battery.vue'
 import CountDown from '@/components/Date/CountDown.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
 import GitHubRepoStars from '@/components/Count/Github/GitHubRepoStars.vue'
@@ -36,6 +40,7 @@ export default {
   name: 'DashBoard',
   components: {
     BaseComponent,
+    Battery,
     CountDown,
     CommemorationDate,
     CommonCount,
@@ -83,6 +88,12 @@ export default {
     box-sizing: border-box;
     padding: (20 / @vw);
     z-index: 1;
+  }
+  .battery {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    z-index: 3;
   }
 }
 </style>
