@@ -86,9 +86,9 @@ export default {
   }
 }
 
-@size-small: 160;
-@size-default: 200;
-@size-big: 250;
+@size-small: 180;
+@size-default: 220;
+@size-big: 260;
 
 .component-small {
   width: (@size-small / @vw);
