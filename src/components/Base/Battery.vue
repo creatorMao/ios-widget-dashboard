@@ -23,22 +23,22 @@ export default {
   },
   created() {
     window.navigator.getBattery().then((battery) => {
-      let { charging, level } = battery
-
-      battery.addEventListener('chargingchange', () => {
-        console.log('充电状态改变')
-        charging = battery.charging
-      })
-
-      battery.addEventListener('levelchange', () => {
-        console.log('电量改变')
-        level = battery.level
-      })
+      const { charging, level } = battery
 
       this.batteryInfo = {
         charging,
         level
       }
+
+      battery.addEventListener('chargingchange', () => {
+        console.log('充电状态改变')
+        this.batteryInfo.charging = battery.charging
+      })
+
+      battery.addEventListener('levelchange', () => {
+        console.log('电量改变')
+        this.batteryInfo.level = battery.level
+      })
     })
   },
   mounted() {},
