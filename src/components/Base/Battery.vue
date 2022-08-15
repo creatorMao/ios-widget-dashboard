@@ -49,21 +49,7 @@ export default {
 
 <style lang="less" scoped>
 .battery {
-  position: relative;
-  width: 30px;
-  height: 16px;
-  background-color: #fff;
-  font-size: 10px;
-  text-align: center;
-  line-height: 16px;
-  &::after {
-    content: '';
-    position: absolute;
-    left: -3px;
-    top: 3px;
-    width: 3px;
-    height: 9px;
-    background-color: #fff;
-  }
+  font-size: 14px;
+  color: white;
 }
 </style>

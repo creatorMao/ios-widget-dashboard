@@ -92,7 +92,7 @@ export default {
   .battery {
     position: absolute;
     right: 3px;
-    top: 3px;
+    bottom: 3px;
     z-index: 3;
   }
 }

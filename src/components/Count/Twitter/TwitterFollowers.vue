@@ -83,7 +83,7 @@ export default {
   text-align: center;
   color: #1d9bf0;
   .value {
-    font-size: 3em;
+    font-size: 2.6em;
   }
   .change-direction {
     font-size: 1em;
