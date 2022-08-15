@@ -67,7 +67,7 @@ export default {
       text-align: right;
       .value-wrap {
         .value {
-          font-size: 3.4em;
+          font-size: 3em;
         }
       }
       .update-time {
