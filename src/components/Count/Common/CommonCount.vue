@@ -58,7 +58,7 @@ export default {
       text-align: right;
       .value-wrap {
         .value {
-          font-size: 3em;
+          font-size: 2.6em;
         }
         .unit-text {
           font-size: 1.2em;
