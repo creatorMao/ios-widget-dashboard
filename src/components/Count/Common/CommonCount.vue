@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { request } from '@/utils/request.js'
+
 export default {
   name: 'DashboardCommonCount',
   props: ['extData', 'value', 'childFlag', 'updateTimeShort'],
@@ -32,21 +34,9 @@ export default {
         return
       }
 
-      const api = this.extData.api
-
-      if (api) {
-        this.$http.get(api).then(
-          (result) => {
-            const { data: res } = result // eslint-disable-line no-unused-vars
-            this.currentValue = eval(`res${this.extData.valueStructurePath}`)
-          },
-          (res) => {}
-        )
-      } else {
-        if (firstFlag) {
-          console.log('api为空...')
-        }
-      }
+      request(this.extData.requestInfo, firstFlag).then((res) => {
+        this.currentValue = res
+      })
     }
   }
 }

@@ -42,26 +42,30 @@ const config = {
     {
       id: '8',
       componentName: 'TikTokDownloadStatus',
-      interval: 1000 * 5,
+      interval: 1000 * 60 * 30,
       size: 'default',
       extData: {
-        api: ''
+        requestInfo: {
+          url: ''
+        }
       }
     },
     {
       id: '7',
       componentName: 'TwitterFollowers',
       size: 'default',
-      interval: 1000 * 5,
+      interval: 1000 * 60 * 30,
       extData: {
-        api: ''
+        requestInfo: {
+          url: ''
+        }
       }
     },
     {
       id: '81',
       componentName: 'GitHubRepoStars',
       size: 'default',
-      interval: 1000 * 60 * 60,
+      interval: 1000 * 60 * 30,
       extData: {
         personalAccessToken: '',
         owner: 'creatorMao',
@@ -72,26 +76,31 @@ const config = {
       id: '811',
       componentName: 'LineChart',
       size: 'default',
-      interval: 1000 * 10,
+      interval: 1000 * 60,
       extData: {
         title: 'surface温度',
         unitText: '°C',
         maxLength: 20,
-        api: 'http://192.168.1.201:8888/api/cpu/temp',
-        valueStructurePath: ".result[0]['Sensors'][2]['Temp']"
+        requestInfo: {
+          url: '',
+          valueStructurePath: ".result[0]['Sensors'][2]['Temp']"
+        }
       }
     },
     {
       id: '8111',
       componentName: 'LineChart',
       size: 'default',
-      interval: 1000 * 1,
+      interval: 1000 * 60,
       extData: {
         color: '#377880',
         title: '树莓派温度',
         unitText: '°C',
         maxLength: 20,
-        api: ''
+        requestInfo: {
+          url: '',
+          valueStructurePath: ''
+        }
       }
     },
     {
@@ -109,13 +118,35 @@ const config = {
       id: '9991',
       componentName: 'CommonCount',
       size: 'default',
-      interval: 1000 * 60,
+      interval: 1000 * 60 * 30,
       extData: {
-        title: '今日新用户',
-        api: '',
-        valueStructurePath: ''
+        title: '今日新增用户',
+        requestInfo: {
+          url: '',
+          valueStructurePath: ''
+        }
+      }
+    },
+    {
+      id: '999111',
+      componentName: 'CommonCount',
+      size: 'default',
+      interval: 1000 * 60 * 30,
+      extData: {
+        title: '今日新增用户',
+        requestInfo: {
+          url: '',
+          config: {
+            headers: {
+              accept: '*/*',
+              Authorization: ''
+            }
+          },
+          valueStructurePath: ''
+        }
       }
     }
+
   ]
 }
 

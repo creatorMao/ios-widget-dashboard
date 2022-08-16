@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { request } from '@/utils/request.js'
+
 export default {
   name: 'DashboardTemperature',
   props: ['extData'],
@@ -122,23 +124,25 @@ export default {
         this.echartsData = this.echartsData.slice(1)
       }
       this.echartsData.push(dataItem)
+
+      if (this.echartsObj) {
+        this.echartsObj.setOption({
+          series: [
+            {
+              data: this.echartsData
+            }
+          ]
+        })
+      }
     },
     refresh: function (firstFlag) {
-      const url = this.extData.api
-
-      if (url) {
-        // 真实接口数据
-        this.$http.get(url).then(
-          (result) => {
-            const { data: res } = result // eslint-disable-line no-unused-vars
-            const value = eval(`res${this.extData.valueStructurePath}`)
-            // console.log(value)
-            this.addEchartsData({
-              value: [this.$dayjs().format('YYYY-MM-DD HH:mm:ss'), value]
-            })
-          },
-          (res) => {}
-        )
+      if (this.extData.requestInfo.url) {
+        request(this.extData.requestInfo, firstFlag).then((res) => {
+          this.currentValue = res
+          this.addEchartsData({
+            value: [this.$dayjs().format('YYYY-MM-DD HH:mm:ss'), res]
+          })
+        })
       } else {
         // 模拟数据
         if (firstFlag) {
@@ -149,16 +153,6 @@ export default {
           value: [
             this.$dayjs().format('YYYY-MM-DD HH:mm:ss'),
             Math.random() * 10
-          ]
-        })
-      }
-
-      if (this.echartsObj) {
-        this.echartsObj.setOption({
-          series: [
-            {
-              data: this.echartsData
-            }
           ]
         })
       }

@@ -30,6 +30,7 @@
 import Header from '@/components/Base/Header.vue'
 import Footer from '@/components/Base/Footer.vue'
 import tiktokIcon from '@/assets/tiktok.png'
+import { request } from '@/utils/request.js'
 
 export default {
   name: 'DashboardTikTokDownloadStatus',
@@ -61,23 +62,9 @@ export default {
   },
   methods: {
     refresh: function (firstFlag) {
-      const url = this.extData.api
-      if (url) {
-        this.$http.get(url).then(
-          (result) => {
-            const { data: res } = result
-            // console.log(res)
-            this.status = res
-          },
-          (res) => {
-            // console.log(res)
-          }
-        )
-      } else {
-        if (firstFlag) {
-          console.log('url无效')
-        }
-      }
+      request(this.extData.requestInfo, firstFlag).then((result) => {
+        this.status = result
+      })
     }
   }
 }

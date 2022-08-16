@@ -24,6 +24,7 @@
 import Header from '@/components/Base/Header.vue'
 import Footer from '@/components/Base/Footer.vue'
 import twitterIcon from '@/assets/twitter.png'
+import { request } from '@/utils/request.js'
 
 export default {
   name: 'TwitterFollowers',
@@ -36,7 +37,7 @@ export default {
         FOLLOWERS_COUNT: '1', // TODO DELETE
         FOLLOWERS_COUNT_TEXT: '111',
         FOLLOWERS_COUNT_CHANGE: '11',
-        IMP_TIME: '10:10:10'
+        IMP_TIME: '08-16 10:10:10'
       }
     }
   },
@@ -59,20 +60,9 @@ export default {
   mounted() {},
   methods: {
     refresh: function (firstFlag) {
-      const url = this.extData.api
-      if (url) {
-        this.$http.get(this.extData.api).then(
-          (result) => {
-            const { data: res } = result
-            this.status = res
-          },
-          (res) => {}
-        )
-      } else {
-        if (firstFlag) {
-          console.log('url无效')
-        }
-      }
+      request(this.extData.requestInfo, firstFlag).then((result) => {
+        this.status = result
+      })
     }
   }
 }
