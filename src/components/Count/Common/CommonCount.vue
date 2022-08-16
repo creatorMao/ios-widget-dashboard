@@ -5,6 +5,7 @@
       <div class="footer">
         <div class="value-wrap">
           <span class="value">{{ value || currentValue }}</span>
+          <span class="unit-text">{{ extData.unitText }}</span>
         </div>
         <div class="update-time">更新于{{ updateTimeShort || updateTime }}</div>
       </div>
@@ -58,6 +59,9 @@ export default {
       .value-wrap {
         .value {
           font-size: 3em;
+        }
+        .unit-text {
+          font-size: 1.2em;
         }
       }
       .update-time {
