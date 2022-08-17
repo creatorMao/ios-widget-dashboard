@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     batteryLevel: function () {
-      return `${this.batteryInfo.level * 100}`
+      return `${(this.batteryInfo.level * 100).toFixed(0)}`
     }
   },
   created() {},
