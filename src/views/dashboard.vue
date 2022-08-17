@@ -28,12 +28,13 @@ import BaseComponent from '@/components/Base/BaseComponent.vue'
 import Battery from '@/components/Base/Battery.vue'
 import CountDown from '@/components/Date/CountDown.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
-import GitHubRepoStars from '@/components/Count/Github/GitHubRepoStars.vue'
-import GitHubRepoCloneTraffic from '@/components/Count/Github/GitHubRepoCloneTraffic.vue'
-import TwitterFollowers from '@/components/Count/Twitter/TwitterFollowers.vue'
-import TikTokDownloadStatus from '@/components/Count/TikTok/TikTokDownloadStatus.vue'
-import CommonCount from '@/components/Count/Common/CommonCount.vue'
-import LineChart from '@/components/Iot/Common/LineChart.vue'
+import DownloadInfo from '@/components/Common/DownloadInfo.vue'
+import CommonCount from '@/components/Common/CommonCount.vue'
+import LineChart from '@/components/Common/LineChart.vue'
+import GitHubRepoStars from '@/components/Info/Github/GitHubRepoStars.vue'
+import GitHubRepoCloneTraffic from '@/components/Info/Github/GitHubRepoCloneTraffic.vue'
+import TwitterFollowers from '@/components/Info/Twitter/TwitterFollowers.vue'
+import TikTokDownloadStatus from '@/components/Info/TikTok/TikTokDownloadStatus.vue'
 import { config } from '@/views/dashboardConfig.js'
 
 export default {
@@ -41,6 +42,7 @@ export default {
   components: {
     BaseComponent,
     Battery,
+    DownloadInfo,
     CountDown,
     CommemorationDate,
     CommonCount,

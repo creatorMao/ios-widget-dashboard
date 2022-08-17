@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import CommonCount from '@/components/Count/Common/CommonCount.vue'
+import CommonCount from '@/components/Common/CommonCount.vue'
 export default {
   name: 'DashboardGithubRepoStars',
   props: ['extData'],
