@@ -71,7 +71,7 @@ export default {
         } = fields
 
         const resultList = eval(`res${list}`)
-        if (this.resultList.length > 0) {
+        if (resultList.length > 0) {
           resultList.forEach((element) => {
             const newFile = {
               fileName: eval(`element${fileName}`),
