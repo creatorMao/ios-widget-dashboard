@@ -7,8 +7,13 @@
     ></Header>
     <div class="mask" :style="{ height: completeRate.text }"></div>
     <div class="content">
-      <div class="rate">{{ completeRate.text }}</div>
-      <div class="speed">{{ downloadSpeed }}</div>
+      <div v-if="haveTaskFlag">
+        <div class="rate">{{ completeRate.text }}</div>
+        <div class="speed">{{ downloadSpeed }}</div>
+      </div>
+      <div v-if="!haveTaskFlag" class="no-download">
+        <div>暂无任务</div>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +32,9 @@ export default {
     }
   },
   computed: {
+    haveTaskFlag: function () {
+      return this.downloadList.length > 0
+    },
     title: function () {
       if (this.downloadList.length === 1) {
         return this.downloadList[0].fileName || this.headerData.title
@@ -121,6 +129,9 @@ export default {
     }
     .speed {
       font-size: 0.9em;
+    }
+    .no-download {
+      color: rgba(80, 120, 254, 0.8);
     }
   }
 }
