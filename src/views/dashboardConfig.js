@@ -4,6 +4,12 @@ const config = {
   backgroundImg: bg1,
   componentList: [
     {
+      id: '0',
+      componentName: 'Time',
+      interval: 1000,
+      size: 'default'
+    },
+    {
       id: '11',
       componentName: 'CommemorationDate',
       size: 'default',
@@ -40,10 +46,10 @@ const config = {
       }
     },
     {
-      id: '8',
-      componentName: 'TikTokDownloadStatus',
-      interval: 1000 * 60 * 30,
+      id: '7',
+      componentName: 'TwitterFollowers',
       size: 'default',
+      interval: 1000 * 60 * 30,
       extData: {
         requestInfo: {
           url: ''
@@ -51,10 +57,10 @@ const config = {
       }
     },
     {
-      id: '7',
-      componentName: 'TwitterFollowers',
-      size: 'default',
+      id: '8',
+      componentName: 'TikTokDownloadStatus',
       interval: 1000 * 60 * 30,
+      size: 'default',
       extData: {
         requestInfo: {
           url: ''
@@ -82,7 +88,7 @@ const config = {
         unitText: '°C',
         maxLength: 20,
         requestInfo: {
-          url: '',
+          url: 'http://192.168.1.201:8888/api/cpu/temp',
           valueStructurePath: ".result[0]['Sensors'][2]['Temp']"
         }
       }
@@ -99,7 +105,11 @@ const config = {
         maxLength: 20,
         requestInfo: {
           url: '',
-          valueStructurePath: ''
+          config: {
+            headers: {
+            }
+          },
+          valueStructurePath: "['values']['CurrentTemperature']"
         }
       }
     },
@@ -123,7 +133,7 @@ const config = {
         title: '今日新增用户',
         requestInfo: {
           url: '',
-          valueStructurePath: ''
+          valueStructurePath: "['FOLLOWERS_COUNT_CHANGE_TODAY']"
         }
       }
     },
@@ -131,22 +141,48 @@ const config = {
       id: '999111',
       componentName: 'CommonCount',
       size: 'default',
-      interval: 1000 * 60 * 30,
+      interval: 1000 * 60 * 5,
       extData: {
-        title: '今日新增用户',
+        title: '阳台温度',
+        unitText: '°C',
         requestInfo: {
           url: '',
           config: {
             headers: {
-              accept: '*/*',
-              Authorization: ''
+
             }
           },
-          valueStructurePath: ''
+          valueStructurePath: "['values']['CurrentTemperature']"
+        }
+      }
+    },
+    {
+      id: '9991111',
+      componentName: 'DownloadInfo',
+      size: 'default',
+      interval: 1000 * 10,
+      headerData: {
+        title: 'aria2下载'
+      },
+      extData: {
+        requestInfo: {
+          url: '',
+          config: {
+          }
+        },
+        resultStructure: {
+          list: '.result',
+          fields: {
+            fileName: '.fileName',
+            fileId: '.gid',
+            downloadSpeed: '.downloadSpeed',
+            uploadSpeed: '.uploadSpeed',
+            completedLength: '.completedLength',
+            totalLength: '.totalLength'
+          }
         }
       }
     }
-
   ]
 }
 
