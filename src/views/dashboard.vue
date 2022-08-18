@@ -89,7 +89,7 @@ export default {
     align-content: flex-start;
     align-items: center;
     box-sizing: border-box;
-    padding: (20 / @vw);
+    padding: (12 / @vw);
     z-index: 1;
   }
   .battery {

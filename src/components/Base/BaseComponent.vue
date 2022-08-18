@@ -55,10 +55,15 @@ export default {
 </script>
 
 <style lang="less">
+@margin: 24;
+@size-small: 195;
+@size-default: 230;
+@size-big: 260;
+
 .component {
   position: relative;
   box-sizing: border-box;
-  margin: (15 / @vw);
+  margin: ((@margin / 2) / @vw);
   border-radius: (25 / @vw);
   background-color: white;
   overflow: hidden;
@@ -85,11 +90,6 @@ export default {
     }
   }
 }
-
-@margin: 30;
-@size-small: 180;
-@size-default: 220;
-@size-big: 260;
 
 .component-small {
   width: (@size-small / @vw);
