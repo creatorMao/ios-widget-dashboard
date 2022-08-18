@@ -131,7 +131,7 @@ export default {
       font-size: 0.9em;
     }
     .no-download {
-      color: rgba(80, 120, 254, 0.8);
+      color: rgba(80, 120, 254, 1);
     }
   }
 }
