@@ -87,6 +87,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    align-items: center;
     box-sizing: border-box;
     padding: (20 / @vw);
     z-index: 1;
