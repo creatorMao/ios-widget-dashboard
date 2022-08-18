@@ -94,7 +94,7 @@ export default {
       }
       .value {
         margin-top: 0.1em;
-        font-size: 2em;
+        font-size: 1.9em;
       }
     }
   }
