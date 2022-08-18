@@ -86,6 +86,7 @@ export default {
   }
 }
 
+@margin: 30;
 @size-small: 180;
 @size-default: 220;
 @size-big: 260;
@@ -96,7 +97,7 @@ export default {
   font-size: ((@size-small / 10) / @vw);
 }
 .component-small-long {
-  width: ((@size-small*2) / @vw);
+  width: (((@size-small*2) + @margin) / @vw);
   height: (@size-small / @vw);
   font-size: ((@size-small / 10) / @vw);
 }
@@ -107,7 +108,7 @@ export default {
   font-size: ((@size-default / 10) / @vw);
 }
 .component-default-long {
-  width: ((@size-default*2) / @vw);
+  width: (((@size-default*2+ @margin)) / @vw);
   height: (@size-default / @vw);
   font-size: ((@size-default / 10) / @vw);
 }
@@ -118,7 +119,7 @@ export default {
   font-size: ((@size-big / 10) / @vw);
 }
 .component-big-long {
-  width: ((@size-big*2) / @vw);
+  width: (((@size-big*2) + @margin) / @vw);
   height: (@size-big / @vw);
   font-size: ((@size-big / 10) / @vw);
 }
