@@ -40,9 +40,15 @@ const config = {
   backgroundImg: bg1,
   componentList: [
     {
+      id: '0',
+      componentName: 'Time',
+      interval: 1000,
+      size: 'default'
+    },
+    {
       id: '11',
       componentName: 'CommemorationDate',
-      size: 'big',
+      size: 'default',
       extData: {
         title: '已失业',
         date: '2022-08-01'
@@ -51,7 +57,7 @@ const config = {
     {
       id: '1',
       componentName: 'CountDown',
-      size: 'big',
+      size: 'default',
       extData: {
         title: '域名到期',
         date: '2024-03-08'
@@ -60,7 +66,7 @@ const config = {
     {
       id: '3',
       componentName: 'CountDown',
-      size: 'big',
+      size: 'default',
       extData: {
         title: '下一次学费还款',
         dayList: ['01', '19', '22']
@@ -69,38 +75,148 @@ const config = {
     {
       id: '9',
       componentName: 'CountDown',
-      size: 'big',
+      size: 'default',
       extData: {
         title: '域名到期',
         date: '2022-11-28'
       }
     },
     {
-      id: '8',
-      componentName: 'TikTokDownloadStatus',
-      interval: 1000 * 5,
-      size: 'big',
+      id: '7',
+      componentName: 'TwitterFollowers',
+      size: 'default',
+      interval: 1000 * 60 * 30,
       extData: {
-        api: ''
+        requestInfo: {
+          url: ''
+        }
       }
     },
     {
-      id: '7',
-      componentName: 'TwitterFollowers',
-      size: 'big',
-      interval: 1000 * 5,
+      id: '8',
+      componentName: 'TikTokDownloadStatus',
+      interval: 1000 * 60 * 30,
+      size: 'default',
       extData: {
-        api: ''
+        requestInfo: {
+          url: ''
+        }
       }
     },
     {
       id: '81',
       componentName: 'GitHubRepoStars',
-      size: 'big',
+      size: 'default',
+      interval: 1000 * 60 * 30,
+      extData: {
+        personalAccessToken: '',
+        owner: 'creatorMao',
+        repo: 'ios-widget-dashboard'
+      }
+    },
+    {
+      id: '811',
+      componentName: 'LineChart',
+      size: 'default',
+      interval: 1000 * 60,
+      extData: {
+        title: 'surface温度',
+        unitText: '°C',
+        maxLength: 20,
+        requestInfo: {
+          url: 'http://192.168.1.201:8888/api/cpu/temp',
+          valueStructurePath: ".result[0]['Sensors'][2]['Temp']"
+        }
+      }
+    },
+    {
+      id: '8111',
+      componentName: 'LineChart',
+      size: 'default',
+      interval: 1000 * 60,
+      extData: {
+        color: '#377880',
+        title: '树莓派温度',
+        unitText: '°C',
+        maxLength: 20,
+        requestInfo: {
+          url: '',
+          config: {
+            headers: {
+            }
+          },
+          valueStructurePath: "['values']['CurrentTemperature']"
+        }
+      }
+    },
+    {
+      id: '999',
+      componentName: 'GitHubRepoCloneTraffic',
+      size: 'default',
       interval: 1000 * 60 * 60,
       extData: {
-        userName: '',
-        repoName: ''
+        personalAccessToken: '',
+        owner: 'creatorMao',
+        repo: 'ios-widget-dashboard'
+      }
+    },
+    {
+      id: '9991',
+      componentName: 'CommonCount',
+      size: 'default',
+      interval: 1000 * 60 * 30,
+      extData: {
+        title: '今日新增用户',
+        requestInfo: {
+          url: '',
+          valueStructurePath: "['FOLLOWERS_COUNT_CHANGE_TODAY']"
+        }
+      }
+    },
+    {
+      id: '999111',
+      componentName: 'CommonCount',
+      size: 'default',
+      interval: 1000 * 60 * 5,
+      extData: {
+        title: '阳台温度',
+        unitText: '°C',
+        requestInfo: {
+          url: '',
+          config: {
+            headers: {
+
+            }
+          },
+          valueStructurePath: "['values']['CurrentTemperature']"
+        }
+      }
+    },
+    {
+      id: '9991111',
+      componentName: 'DownloadInfo',
+      size: 'default',
+      interval: 1000 * 10,
+      headerData: {
+        title: 'aria2下载'
+      },
+      extData: {
+        requestInfo: {
+          url: '',
+          config: {
+          }
+        },
+        resultStructure: {
+          list: '.result',
+          fields: {
+            fileName: '.fileName',
+            fileId: '.gid',
+            downloadSpeed: '.downloadSpeed',
+            uploadSpeed: '.uploadSpeed',
+            completedLength: '.completedLength',
+            totalLength: '.totalLength'
+          }
+        }
       }
     }
   ]
