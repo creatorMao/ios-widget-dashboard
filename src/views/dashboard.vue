@@ -28,6 +28,7 @@ import BaseComponent from '@/components/Base/BaseComponent.vue'
 import Battery from '@/components/Base/Battery.vue'
 import CountDown from '@/components/Date/CountDown.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
+import Time from '@/components/Date/Time.vue'
 import DownloadInfo from '@/components/Common/DownloadInfo.vue'
 import CommonCount from '@/components/Common/CommonCount.vue'
 import LineChart from '@/components/Common/LineChart.vue'
@@ -45,6 +46,7 @@ export default {
     DownloadInfo,
     CountDown,
     CommemorationDate,
+    Time,
     CommonCount,
     TikTokDownloadStatus,
     TwitterFollowers,
