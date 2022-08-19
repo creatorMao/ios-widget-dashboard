@@ -15,7 +15,9 @@
       </div>
       <div>
         <div class="title">离{{ extData.title }}</div>
-        <div class="days">{{ days }}<span class="days-text">天</span></div>
+        <div class="days">
+          {{ days }}<span class="days-text" v-if="days != '今日'">天</span>
+        </div>
       </div>
     </div>
   </div>
@@ -55,8 +57,10 @@ export default {
     },
     days: function () {
       const todayNotHaveDay = this.$dayjs().format('YYYY-MM')
+      let days = 0
+
       if (this.extData.date) {
-        return this.$dayjs(this.extData.date).diff(this.today, 'hour') / 24
+        days = this.$dayjs(this.extData.date).diff(this.today, 'hour') / 24
       } else {
         let min = Number.MAX_SAFE_INTEGER
         this.extData.dayList.forEach((item, index) => {
@@ -72,8 +76,10 @@ export default {
             }
           }
         })
-        return min
+        days = min
       }
+
+      return days === 0 ? '今日' : days
     }
   },
   mounted() {},
