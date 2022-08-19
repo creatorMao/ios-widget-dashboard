@@ -13,9 +13,6 @@ A ios widget style dashboard
 - Vue2
 - Less
 
-## TODO
-还未完成，只开发额10%左右...(2022-08-11)
-
 ## 使用步骤
 
 ### 1.安装依赖
