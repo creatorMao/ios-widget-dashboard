@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { getWeekDay } from '@/utils/date.js'
 export default {
   name: 'CountDown',
   components: {},
@@ -49,10 +50,9 @@ export default {
         date = this.extData.date
       }
 
-      const weekDay = ['日', '一', '二', '三', '四', '五', '六']
       return {
         value: date,
-        weekDayText: `星期${weekDay[this.$dayjs(date).day()]}`
+        weekDayText: getWeekDay(date).text
       }
     },
     days: function () {

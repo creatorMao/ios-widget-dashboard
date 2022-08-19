@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { getWeekDay } from '@/utils/date.js'
+
 export default {
   name: 'DashboardTime',
 
@@ -30,8 +32,7 @@ export default {
       return this.now.format('M月D日')
     },
     weekDayText() {
-      const weekDay = ['日', '一', '二', '三', '四', '五', '六']
-      return `星期${weekDay[this.now.day()]}`
+      return getWeekDay(this.now).text
     }
   },
   mounted() {},
