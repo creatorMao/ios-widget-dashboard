@@ -60,7 +60,8 @@ export default {
   methods: {
     initChart: function () {
       this.echartsObj = this.$echarts.init(this.$refs['chart-content'])
-      this.echartsObj.setOption({
+
+      const echartSetting = {
         title: {
           text: ''
         },
@@ -114,7 +115,19 @@ export default {
             data: this.echartsData
           }
         ]
-      })
+      }
+
+      const { yAxis = {} } = this.extData.echartsSetting || {}
+      const { min: yMin, max: yMax } = yAxis
+      if (yMin) {
+        echartSetting.yAxis.min = yMin
+      }
+      if (yMax) {
+        echartSetting.yAxis.max = yMax
+      }
+
+      this.echartsObj.setOption(echartSetting)
+
       window.addEventListener('resize', () => {
         this.echartsObj.resize()
       })
@@ -138,6 +151,7 @@ export default {
     refresh: function (firstFlag) {
       if (this.extData.requestInfo.url) {
         request(this.extData.requestInfo, firstFlag).then((res) => {
+          res = res || 0
           this.currentValue = res
           this.addEchartsData({
             value: [this.$dayjs().format('YYYY-MM-DD HH:mm:ss'), res]
