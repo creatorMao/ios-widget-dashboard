@@ -56,9 +56,9 @@ export default {
 
 <style lang="less">
 @margin: 24;
-@size-small: 195;
-@size-default: 230;
-@size-big: 260;
+@size-small: 165;
+@size-default: 195;
+@size-big: 230;
 
 .component {
   position: relative;
