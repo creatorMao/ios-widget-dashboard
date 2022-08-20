@@ -51,7 +51,7 @@ export default {
         })
         .then((result) => {
           const { data: res } = result
-          this.value = res.uniques
+          this.value = res.count
         })
     }
   }
