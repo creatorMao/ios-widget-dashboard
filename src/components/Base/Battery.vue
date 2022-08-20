@@ -1,6 +1,6 @@
 <template>
   <div class="battery" v-if="supportFlag">
-    {{ batteryLevel }}
+    {{ `${batteryInfo.charging ? '+' : ''}${batteryLevel}` }}
   </div>
 </template>
 
