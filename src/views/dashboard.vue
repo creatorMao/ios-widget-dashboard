@@ -1,11 +1,11 @@
 <template>
   <div
     class="dashboard"
-    :style="{ background: `url('${config.backgroundImg}')` }"
+    :style="{ background: `url('${dashboardConfig.backgroundImg}')` }"
   >
     <div class="dashboard-content">
       <BaseComponent
-        v-for="item in config.componentList"
+        v-for="item in dashboardConfig.componentList"
         :key="item.id"
         :size="item.size"
         :interval="item.interval"
@@ -54,6 +54,7 @@ export default {
     GitHubRepoCloneTraffic,
     LineChart
   },
+  props: ['configId'],
   created() {
     this.config = config
   },
@@ -65,7 +66,24 @@ export default {
   beforeDestroy() {},
 
   mounted() {},
+  computed: {
+    dashboardConfig() {
+      let resultConfig = config[0]
 
+      if (this.configId) {
+        config.some((element) => {
+          if (element.id === this.configId) {
+            resultConfig = element
+            return true
+          } else {
+            return false
+          }
+        })
+      }
+
+      return resultConfig
+    }
+  },
   methods: {}
 }
 </script>

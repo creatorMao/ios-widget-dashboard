@@ -7,8 +7,16 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'dashboard',
     component: Dashboard
+  },
+  {
+    path: '/dashboard',
+    component: Dashboard
+  },
+  {
+    path: '/dashboard/:configId',
+    component: Dashboard,
+    props: true
   }
 ]
 
