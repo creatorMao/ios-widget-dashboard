@@ -4,7 +4,7 @@
       <div class="title">{{ extData.title }}</div>
       <div class="footer">
         <div class="value-wrap">
-          <span class="value">{{ value || currentValue }}</span>
+          <span class="value">{{ value || currentValue || '暂无' }}</span>
           <span class="unit-text">{{ extData.unitText }}</span>
         </div>
         <div class="update-time">更新于{{ updateTimeShort || updateTime }}</div>
