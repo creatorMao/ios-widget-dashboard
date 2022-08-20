@@ -32,6 +32,7 @@ import Time from '@/components/Date/Time.vue'
 import DownloadInfo from '@/components/Common/DownloadInfo.vue'
 import CommonCount from '@/components/Common/CommonCount.vue'
 import LineChart from '@/components/Common/LineChart.vue'
+import SwitchButton from '@/components/Common/SwitchButton.vue'
 import GitHubRepoStars from '@/components/Info/Github/GitHubRepoStars.vue'
 import GitHubRepoCloneTraffic from '@/components/Info/Github/GitHubRepoCloneTraffic.vue'
 import TwitterFollowers from '@/components/Info/Twitter/TwitterFollowers.vue'
@@ -48,6 +49,7 @@ export default {
     CommemorationDate,
     Time,
     CommonCount,
+    SwitchButton,
     TikTokDownloadStatus,
     TwitterFollowers,
     GitHubRepoStars,
