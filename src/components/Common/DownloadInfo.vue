@@ -21,6 +21,7 @@
 <script>
 import Header from '@/components/Base/Header.vue'
 import { request } from '@/utils/request.js'
+import { getPropertyValue } from '@/utils/objectHelper.js'
 
 export default {
   name: 'DashboardDownloadInfo',
@@ -78,16 +79,16 @@ export default {
           totalLength
         } = fields
 
-        const resultList = eval(`res${list}`)
+        const resultList = getPropertyValue(res, list)
         if (resultList.length > 0) {
           resultList.forEach((element) => {
             const newFile = {
-              fileName: eval(`element${fileName}`),
-              fileId: eval(`element${fileId}`),
-              downloadSpeed: eval(`element${downloadSpeed}`),
-              uploadSpeed: eval(`element${uploadSpeed}`),
-              completedLength: eval(`element${completedLength}`),
-              totalLength: eval(`element${totalLength}`)
+              fileName: getPropertyValue(element, fileName),
+              fileId: getPropertyValue(element, fileId),
+              downloadSpeed: getPropertyValue(element, downloadSpeed),
+              uploadSpeed: getPropertyValue(element, uploadSpeed),
+              completedLength: getPropertyValue(element, completedLength),
+              totalLength: getPropertyValue(element, totalLength)
             }
 
             let existFlag = false

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getPropertyValue } from '@/utils/objectHelper.js'
 
 export const request = function(requestInfo, firstFlag) {
   const { type = 'http' } = requestInfo
@@ -15,11 +16,11 @@ export const request = function(requestInfo, firstFlag) {
 
     return axios(url, config).then(
       (result) => {
-        const { data: res } = result // eslint-disable-line no-unused-vars
+        const { data: res } = result
 
         let returnValue = res
         if (valueStructurePath) {
-          returnValue = eval(`res${valueStructurePath}`)
+          returnValue = getPropertyValue(res, valueStructurePath)
         }
 
         return new Promise((resolve, reject) => {

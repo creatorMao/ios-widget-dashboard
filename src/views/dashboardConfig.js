@@ -97,7 +97,7 @@ const config = [
           },
           requestInfo: {
             url: 'http://192.168.1.201:8888/api/cpu/temp',
-            valueStructurePath: ".result[0]['Sensors'][2]['Temp']"
+            valueStructurePath: '.result[0].Sensors[2].Temp'
           }
         }
       },
@@ -121,9 +121,10 @@ const config = [
             url: '',
             config: {
               headers: {
+
               }
             },
-            valueStructurePath: "['values']['CurrentTemperature']"
+            valueStructurePath: '.values.CurrentTemperature'
           }
         }
       },
@@ -147,7 +148,7 @@ const config = [
           title: '今日新增用户',
           requestInfo: {
             url: '',
-            valueStructurePath: "['FOLLOWERS_COUNT_CHANGE_TODAY']"
+            valueStructurePath: '.FOLLOWERS_COUNT_CHANGE_TODAY'
           }
         }
       },
@@ -165,7 +166,7 @@ const config = [
               headers: {
               }
             },
-            valueStructurePath: "['values']['CurrentTemperature']"
+            valueStructurePath: '.values.CurrentTemperature'
           }
         }
       },
@@ -179,7 +180,7 @@ const config = [
         },
         extData: {
           requestInfo: {
-            url: '',
+            url: 'http://192.168.1.11:6800/jsonrpc',
             config: {
               method: 'post',
               data: {
@@ -196,6 +197,23 @@ const config = [
               completedLength: '.completedLength',
               totalLength: '.totalLength'
             }
+          }
+        }
+      },
+      {
+        id: '111111111',
+        componentName: 'SwitchButton',
+        size: 'default',
+        interval: 1000 * 10,
+        extData: {
+          title: 'surface风扇',
+          requestInfo: {
+            url: '',
+            config: {
+              headers: {
+              }
+            },
+            valueStructurePath: '.values.On'
           }
         }
       }
