@@ -56,26 +56,33 @@ export default {
       }
     },
     days: function () {
-      const todayNotHaveDay = this.$dayjs().format('YYYY-MM')
       let days = 0
 
       if (this.extData.date) {
         days = this.$dayjs(this.extData.date).diff(this.today, 'hour') / 24
       } else {
         let min = Number.MAX_SAFE_INTEGER
+        const monthList = [
+          this.$dayjs().format('YYYY-MM'),
+          this.$dayjs().add(1, 'month').format('YYYY-MM')
+        ]
+
         this.extData.dayList.forEach((item, index) => {
           if (item) {
-            const day = todayNotHaveDay + '-' + item
-            const temp =
-              this.$dayjs(day, 'YYYY-MM-DD').diff(this.today, 'hour') / 24
-            if (temp >= 0) {
-              if (temp < min) {
-                min = temp
-                this.nextDate = day
+            monthList.forEach((month) => {
+              const day = month + '-' + item
+              const temp =
+                this.$dayjs(day, 'YYYY-MM-DD').diff(this.today, 'hour') / 24
+              if (temp >= 0) {
+                if (temp < min) {
+                  min = temp
+                  this.nextDate = day
+                }
               }
-            }
+            })
           }
         })
+
         days = min
       }
 
