@@ -99,4 +99,19 @@ export default {
     }
   }
 }
+.component-big-long {
+  .container {
+    .content {
+      .item {
+        font-size: 1em;
+      }
+      .value {
+        font-size: 2.1em;
+      }
+    }
+    .footer {
+      font-size: 0.8em;
+    }
+  }
+}
 </style>
