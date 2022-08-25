@@ -23,9 +23,7 @@ export const request = function(requestInfo, firstFlag) {
           returnValue = getPropertyValue(res, valueStructurePath)
         }
 
-        return new Promise((resolve, reject) => {
-          resolve(returnValue)
-        })
+        return returnValue
       },
       (res) => {
         console.log(res)
