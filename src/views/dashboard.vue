@@ -37,6 +37,7 @@ import GitHubRepoStars from '@/components/Info/Github/GitHubRepoStars.vue'
 import GitHubRepoCloneTraffic from '@/components/Info/Github/GitHubRepoCloneTraffic.vue'
 import TwitterFollowers from '@/components/Info/Twitter/TwitterFollowers.vue'
 import TikTokDownloadStatus from '@/components/Info/TikTok/TikTokDownloadStatus.vue'
+import HeFengWeather from '@/components/Weather/HeFengWeather.vue'
 import { config } from '@/views/dashboardConfig.js'
 
 export default {
@@ -54,7 +55,8 @@ export default {
     TwitterFollowers,
     GitHubRepoStars,
     GitHubRepoCloneTraffic,
-    LineChart
+    LineChart,
+    HeFengWeather
   },
   props: ['configId'],
   created() {

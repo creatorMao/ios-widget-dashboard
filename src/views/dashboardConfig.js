@@ -12,6 +12,16 @@ const config = [
         size: 'default'
       },
       {
+        id: '110',
+        componentName: 'HeFengWeather',
+        size: 'default',
+        extData: {
+          location: '101210101',
+          cityName: '杭州市',
+          key: ''
+        }
+      },
+      {
         id: '11',
         componentName: 'CommemorationDate',
         size: 'default',
