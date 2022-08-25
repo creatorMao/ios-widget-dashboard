@@ -2,19 +2,18 @@
   <div class="container">
     <div class="content">
       <div class="top">
-        <div class="left">
-          <div>{{ extData.cityName }}</div>
-          <div>
-            <span class="current-temp temp">{{ currentTemp }}</span>
+        <div>
+          <div class="left">
+            <div>{{ extData.cityName }}</div>
+            <div>
+              <span class="current-temp temp">{{ currentTemp }}</span>
+            </div>
+          </div>
+          <div class="right">
+            <i :class="currentWeatherIcon"></i>
+            <div>{{ currentWeatherText }}</div>
           </div>
         </div>
-        <div class="right">
-          <i :class="currentWeatherIcon"></i>
-          <div>{{ currentWeatherText }}</div>
-        </div>
-      </div>
-      <div class="bottom">
-        <div class="future-text">{{ futureWeatherText }}</div>
         <div class="today-info">
           <span>
             最高<span class="temp">{{ todayMaxTemp }}</span>
@@ -23,6 +22,9 @@
             最低<span class="temp">{{ todayMinTemp }}</span>
           </span>
         </div>
+      </div>
+      <div class="bottom">
+        <div class="future-text">{{ futureWeatherText }}</div>
       </div>
     </div>
   </div>
@@ -123,29 +125,32 @@ export default {
     align-items: flex-start;
     .top {
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: row;
+      & > div {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+      }
       .current-temp {
         font-size: 3em;
       }
       .right {
-        font-size: 1em;
-      }
-    }
-    .bottom {
-      .future-text {
-        font-size: 1em;
+        font-size: 0.9em;
+        text-align: center;
       }
       .today-info {
-        margin-top: 0.2em;
-        font-size: 0.9em;
+        justify-content: flex-start;
+        font-size: 0.8em;
         & > span {
           & > span {
             margin-left: 0.2em;
           }
           margin-right: 0.5em;
         }
+      }
+    }
+    .bottom {
+      .future-text {
+        font-size: 1.1em;
       }
     }
     .temp {
