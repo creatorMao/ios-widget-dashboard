@@ -14,21 +14,22 @@ export const request = function(requestInfo, firstFlag) {
       return
     }
 
-    return axios(url, config).then(
-      (result) => {
-        const { data: res } = result
+    return axios(url, config)
+      .then(
+        (result) => {
+          const { data: res } = result
 
-        let returnValue = res
-        if (valueStructurePath) {
-          returnValue = getPropertyValue(res, valueStructurePath)
+          let returnValue = res
+          if (valueStructurePath) {
+            returnValue = getPropertyValue(res, valueStructurePath)
+          }
+
+          return returnValue
         }
-
-        return returnValue
-      },
-      (res) => {
+      )
+      .catch((res) => {
         console.log(res)
-      }
-    )
+      })
   } else {
     // websocket
   }
