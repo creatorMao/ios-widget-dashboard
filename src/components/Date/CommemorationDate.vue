@@ -27,7 +27,9 @@ export default {
         this.$dayjs(this.$dayjs(this.today).format('YYYY-MM-DD')).diff(
           this.extData.date,
           'hour'
-        ) / 24
+        ) /
+          24 +
+        1
       )
     }
   },
