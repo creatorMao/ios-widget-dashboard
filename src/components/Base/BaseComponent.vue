@@ -68,7 +68,7 @@ export default {
   background-color: white;
   overflow: hidden;
   word-break: break-all;
-  .container {
+  & > .container {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -86,6 +86,7 @@ export default {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
       font-size: 1em;
     }
   }
