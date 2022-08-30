@@ -5,14 +5,75 @@
         title
       }"
     ></Header>
-    <div class="mask" :style="{ height: completeRate.text }"></div>
+    <div
+      class="mask"
+      v-if="pendingList.length === 1"
+      :style="{ height: `${this.pendingList[0].progress}%` }"
+    ></div>
+    <div v-if="pendingList.length > 1" class="pending-count">
+      {{ pendingList.length }}
+    </div>
+    <div
+      v-if="pendingList.length === 0 && this.downloadList.length > 0"
+      class="pending-count"
+    >
+      {{ downloadList.length }}
+    </div>
     <div class="content">
-      <div v-if="haveTaskFlag">
-        <div class="rate">{{ completeRate.text }}</div>
-        <div class="speed">{{ downloadSpeed }}</div>
-      </div>
       <div v-if="!haveTaskFlag" class="no-download">
         <div>暂无任务</div>
+      </div>
+      <div v-if="pendingList.length === 1">
+        <div class="rate">{{ this.pendingList[0].progress }}%</div>
+        <div class="speed">{{ this.pendingList[0].downloadSpeed }}</div>
+      </div>
+      <div v-if="pendingList.length === 0 && haveTaskFlag" class="pendingMore">
+        <div class="container">
+          <div
+            v-for="item in downloadList.slice(0, 3)"
+            :key="item.taskId"
+            class="task-item"
+          >
+            <div class="task-info">
+              <div class="task-name ellipsis">
+                {{ item.taskName }}
+              </div>
+              <div class="task-downloadSpeed ellipsis">
+                {{ item.downloadSpeed }}
+              </div>
+            </div>
+            <div class="progress">
+              <div
+                class="progress-charts"
+                :style="`width:${item.progress}%`"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="pendingList.length > 1" class="pendingMore">
+        <div class="container">
+          <div
+            v-for="item in pendingList.slice(0, 3)"
+            :key="item.taskId"
+            class="task-item"
+          >
+            <div class="task-info">
+              <div class="task-name ellipsis">
+                {{ item.taskName }}
+              </div>
+              <div class="task-downloadSpeed ellipsis">
+                {{ item.downloadSpeed }}
+              </div>
+            </div>
+            <div class="progress">
+              <div
+                class="progress-charts"
+                :style="`width:${item.progress}%`"
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -22,6 +83,7 @@
 import Header from '@/components/Base/Header.vue'
 import { request } from '@/utils/request.js'
 import { getPropertyValue } from '@/utils/objectHelper.js'
+import { formatDownloadSpeed } from '@/utils/unitHelper.js'
 
 export default {
   name: 'DashboardDownloadInfo',
@@ -36,93 +98,109 @@ export default {
     haveTaskFlag: function () {
       return this.downloadList.length > 0
     },
+    pendingList: function () {
+      return this.downloadList.filter((item) => {
+        return item.progress !== 100
+      })
+    },
     title: function () {
-      if (this.downloadList.length === 1) {
-        return this.downloadList[0].fileName || this.headerData.title
+      if (this.pendingList.length === 1) {
+        return this.pendingList[0].taskName || this.headerData.title
+      } else if (this.pendingList.length > 1) {
+        return '正在下载'
+      } else if (
+        this.pendingList.length === 0 &&
+        this.downloadList.length > 0
+      ) {
+        return '已下载'
       }
       return this.headerData.title
-    },
-    downloadSpeed: function () {
-      if (this.downloadList.length === 1) {
-        return (this.downloadList[0].downloadSpeed / 1000).toFixed(1) + 'kb/s'
-      }
-      return ''
-    },
-    completeRate() {
-      const result = {
-        value: 0,
-        text: ''
-      }
-
-      if (this.downloadList.length === 1) {
-        const rate =
-          this.downloadList[0].completedLength /
-          this.downloadList[0].totalLength
-        result.value = isNaN(rate) ? 0 : (rate * 100).toFixed(0)
-        result.text = result.value + '%'
-      }
-
-      return result
     }
   },
   mounted() {},
   methods: {
     refresh: function (firstFlag, { updateTimeShort } = {}) {
       request(this.extData.requestInfo, firstFlag).then((res) => {
-        const { list, fields } = this.extData.resultStructure
         const {
-          fileName,
-          fileId,
-          downloadSpeed,
-          uploadSpeed,
+          taskList,
+          taskId,
+          taskName,
+          progress,
           completedLength,
-          totalLength
-        } = fields
+          totalLength,
+          uploadSpeed,
+          downloadSpeed,
+          speedUnit,
+          speedFormatUnit
+        } = this.extData.fields
 
-        const resultList = getPropertyValue(res, list)
-        if (resultList.length > 0) {
-          resultList.forEach((element) => {
-            const newFile = {
-              fileName: getPropertyValue(element, fileName),
-              fileId: getPropertyValue(element, fileId),
-              downloadSpeed: getPropertyValue(element, downloadSpeed),
-              uploadSpeed: getPropertyValue(element, uploadSpeed),
-              completedLength: getPropertyValue(element, completedLength),
-              totalLength: getPropertyValue(element, totalLength)
-            }
+        let downloadList = res
+        if (taskList) {
+          downloadList = getPropertyValue(res, taskList)
+        }
 
-            let existFlag = false
-            let i = 0
-            this.downloadList.forEach((item, index) => {
-              if (item.fileId === newFile.fileId) {
-                existFlag = true
-                i = index
-              }
-            })
+        downloadList.forEach((element) => {
+          const total = getPropertyValue(element, totalLength)
+          const complete = getPropertyValue(element, completedLength)
 
-            if (!existFlag) {
-              this.downloadList.push(newFile)
+          const newTask = {
+            taskName: getPropertyValue(element, taskName),
+            taskId: getPropertyValue(element, taskId),
+            downloadSpeed: formatDownloadSpeed(
+              getPropertyValue(element, downloadSpeed) || 0,
+              speedUnit,
+              speedFormatUnit
+            ),
+            uploadSpeed: formatDownloadSpeed(
+              getPropertyValue(element, uploadSpeed) || 0,
+              speedUnit,
+              speedFormatUnit
+            ),
+            progress: progress
+              ? getPropertyValue(element, progress)
+              : this.calcProgress(total, complete)
+          }
+
+          const existFlag = this.downloadList.some((item, index) => {
+            if (item.taskId === newTask.taskId) {
+              this.$set(this.downloadList, index, newTask)
+              return true
             } else {
-              this.$set(this.downloadList, i, newFile)
+              return false
             }
           })
-        } else {
-          this.downloadList = []
-        }
+
+          if (!existFlag) {
+            this.downloadList.push(newTask)
+          }
+        })
       })
+    },
+    calcProgress: function (totalLength, completedLength) {
+      const progress = completedLength / totalLength
+      return isNaN(progress) ? 0 : (progress * 100).toFixed(0)
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+@green: rgba(57, 220, 152, 1);
+
 .container {
   .mask {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
-    background: rgba(80, 120, 254, 0.8);
+    background: @green;
+  }
+  .pending-count {
+    position: absolute;
+    right: 0.5em;
+    top: 0.1em;
+    font-size: 2.7em;
+    color: @green;
   }
   .content {
     .rate {
@@ -132,8 +210,60 @@ export default {
       font-size: 0.9em;
     }
     .no-download {
-      color: rgba(80, 120, 254, 1);
+      color: rgba(0, 0, 0, 0.8);
+    }
+    & > div {
+      text-align: center;
+    }
+    .pendingMore {
+      width: 100%;
+      height: 100%;
+      .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        .task-item {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-top: 0.5em;
+          font-size: 0.9em;
+          align-items: center;
+          .task-info {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8em;
+            .task-name {
+              width: 60%;
+              text-align: left;
+            }
+            .task-downloadSpeed {
+              width: 40%;
+              text-align: right;
+            }
+          }
+          .progress {
+            width: 100%;
+            margin-top: 0.2em;
+            .progress-charts {
+              height: 0.4em;
+              background-color: @green;
+              border-radius: 0.2em;
+            }
+          }
+        }
+      }
     }
   }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
