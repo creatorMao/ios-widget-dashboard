@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getPropertyValue } from '@/utils/objectHelper.js'
 
-export const request = function(requestInfo, firstFlag) {
+export const request = function (requestInfo, firstFlag) {
   const { type = 'http' } = requestInfo
 
   if (type === 'http') {
@@ -29,6 +29,7 @@ export const request = function(requestInfo, firstFlag) {
       )
       .catch((res) => {
         console.log(res)
+        return res
       })
   } else {
     // websocket
