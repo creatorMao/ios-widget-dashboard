@@ -139,6 +139,10 @@ export default {
           downloadList = getPropertyValue(res, taskList)
         }
 
+        const tempList = this.downloadList.filter((item) => {
+          return item.progress === 100
+        })
+
         downloadList.forEach((element) => {
           const total = getPropertyValue(element, totalLength)
           const complete = getPropertyValue(element, completedLength)
@@ -161,9 +165,8 @@ export default {
               : this.calcProgress(total, complete)
           }
 
-          const existFlag = this.downloadList.some((item, index) => {
-            if (item.taskId === newTask.taskId) {
-              this.$set(this.downloadList, index, newTask)
+          const existFlag = tempList.some((temp) => {
+            if (temp.taskId === newTask.taskId) {
               return true
             } else {
               return false
@@ -171,9 +174,11 @@ export default {
           })
 
           if (!existFlag) {
-            this.downloadList.push(newTask)
+            tempList.push(newTask)
           }
         })
+
+        this.downloadList = tempList
       })
     },
     calcProgress: function (totalLength, completedLength) {
