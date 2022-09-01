@@ -5,32 +5,34 @@
         title
       }"
     ></Header>
+    <!-- 有一个下载时，展示遮罩 -->
     <div
       class="mask"
-      v-if="pendingList.length === 1"
-      :style="{ height: `${this.pendingList[0].progress}%` }"
+      v-if="oneDownloadingFlag"
+      :style="{ height: `${this.downloadingTaskList[0].progress}%` }"
     ></div>
-    <div v-if="pendingList.length > 1" class="pending-count">
-      {{ pendingList.length }}
-    </div>
+    <!-- 有多个下载，或者有已完成记录时 -->
     <div
-      v-if="pendingList.length === 0 && this.downloadList.length > 0"
+      v-if="overOneDownloadingFlag || (!downloadingFlag && havaCompleteFlag)"
       class="pending-count"
     >
-      {{ downloadList.length }}
+      {{ downloadingTaskList.length || completeTaskList.length }}
     </div>
     <div class="content">
-      <div v-if="!haveTaskFlag" class="no-download">
+      <!-- 无正在下载，无已完成记录 -->
+      <div v-if="!downloadingFlag && !havaCompleteFlag" class="no-download">
         <div>暂无任务</div>
       </div>
-      <div v-if="pendingList.length === 1">
-        <div class="rate">{{ this.pendingList[0].progress }}%</div>
-        <div class="speed">{{ this.pendingList[0].downloadSpeed }}</div>
+      <!-- 有一个正在下载 -->
+      <div v-if="oneDownloadingFlag">
+        <div class="rate">{{ this.downloadingTaskList[0].progress }}%</div>
+        <div class="speed">{{ this.downloadingTaskList[0].downloadSpeed }}</div>
       </div>
-      <div v-if="pendingList.length === 0 && haveTaskFlag" class="pendingMore">
+      <!-- 无正在下载，有已完成记录 -->
+      <div v-if="!downloadingFlag && havaCompleteFlag" class="pendingMore">
         <div class="container">
           <div
-            v-for="item in downloadList.slice(0, 3)"
+            v-for="item in completeTaskList.slice(0, 3)"
             :key="item.taskId"
             class="task-item"
           >
@@ -39,7 +41,7 @@
                 {{ item.taskName }}
               </div>
               <div class="task-downloadSpeed ellipsis">
-                {{ item.downloadSpeed }}
+                {{ item.period }}
               </div>
             </div>
             <div class="progress">
@@ -51,10 +53,11 @@
           </div>
         </div>
       </div>
-      <div v-if="pendingList.length > 1" class="pendingMore">
+      <!-- 有多个下载 -->
+      <div v-if="overOneDownloadingFlag" class="pendingMore">
         <div class="container">
           <div
-            v-for="item in pendingList.slice(0, 3)"
+            v-for="item in downloadingTaskList.slice(0, 3)"
             :key="item.taskId"
             class="task-item"
           >
@@ -91,95 +94,117 @@ export default {
   props: ['extData', 'headerData'],
   data() {
     return {
-      downloadList: []
+      downloadingTaskList: [],
+      completeTaskList: []
     }
   },
   computed: {
-    haveTaskFlag: function () {
-      return this.downloadList.length > 0
+    oneDownloadingFlag: function () {
+      return this.downloadingTaskList.length === 1
     },
-    pendingList: function () {
-      return this.downloadList.filter((item) => {
-        return item.progress !== 100
-      })
+    overOneDownloadingFlag: function () {
+      return this.downloadingTaskList.length > 1
+    },
+    downloadingFlag: function () {
+      return this.downloadingTaskList.length > 0
+    },
+    havaCompleteFlag: function () {
+      return this.completeTaskList.length > 0
     },
     title: function () {
-      if (this.pendingList.length === 1) {
-        return this.pendingList[0].taskName || this.headerData.title
-      } else if (this.pendingList.length > 1) {
-        return '正在下载'
-      } else if (
-        this.pendingList.length === 0 &&
-        this.downloadList.length > 0
-      ) {
-        return '已下载'
+      let title = ''
+
+      if (this.downloadingTaskList.length === 1) {
+        title = this.downloadingTaskList[0].taskName
       }
-      return this.headerData.title
+
+      if (this.downloadingTaskList.length > 1) {
+        title = '正在下载'
+      }
+
+      if (
+        this.downloadingTaskList.length === 0 &&
+        this.completeTaskList.length > 0
+      ) {
+        title = '已下载'
+      }
+
+      return title || this.headerData.title
     }
   },
   mounted() {},
   methods: {
     refresh: function (firstFlag, { updateTimeShort } = {}) {
-      request(this.extData.requestInfo, firstFlag).then((res) => {
-        const {
-          taskList,
-          taskId,
-          taskName,
-          progress,
-          completedLength,
-          totalLength,
-          uploadSpeed,
-          downloadSpeed,
-          speedUnit,
-          speedFormatUnit
-        } = this.extData.fields
+      request(this.extData.downloadingAPI.requestInfo, firstFlag)
+        .then((res) => {
+          const {
+            taskList,
+            taskId,
+            taskName,
+            progress,
+            completedLength,
+            totalLength,
+            uploadSpeed,
+            downloadSpeed,
+            speedUnit,
+            speedFormatUnit
+          } = this.extData.downloadingAPI.fields
 
-        let downloadList = res
-        if (taskList) {
-          downloadList = getPropertyValue(res, taskList)
-        }
-
-        const tempList = this.downloadList.filter((item) => {
-          return item.progress === 100
-        })
-
-        downloadList.forEach((element) => {
-          const total = getPropertyValue(element, totalLength)
-          const complete = getPropertyValue(element, completedLength)
-
-          const newTask = {
-            taskName: getPropertyValue(element, taskName),
-            taskId: getPropertyValue(element, taskId),
-            downloadSpeed: formatDownloadSpeed(
-              getPropertyValue(element, downloadSpeed) || 0,
-              speedUnit,
-              speedFormatUnit
-            ),
-            uploadSpeed: formatDownloadSpeed(
-              getPropertyValue(element, uploadSpeed) || 0,
-              speedUnit,
-              speedFormatUnit
-            ),
-            progress: progress
-              ? getPropertyValue(element, progress)
-              : this.calcProgress(total, complete)
+          if (taskList) {
+            res = getPropertyValue(res, taskList)
           }
 
-          const existFlag = tempList.some((temp) => {
-            if (temp.taskId === newTask.taskId) {
-              return true
-            } else {
-              return false
+          res = res.map((element) => {
+            const total = getPropertyValue(element, totalLength)
+            const complete = getPropertyValue(element, completedLength)
+
+            return {
+              taskName: getPropertyValue(element, taskName),
+              taskId: getPropertyValue(element, taskId),
+              downloadSpeed: formatDownloadSpeed(
+                getPropertyValue(element, downloadSpeed) || 0,
+                speedUnit,
+                speedFormatUnit
+              ),
+              uploadSpeed: formatDownloadSpeed(
+                getPropertyValue(element, uploadSpeed) || 0,
+                speedUnit,
+                speedFormatUnit
+              ),
+              progress: progress
+                ? getPropertyValue(element, progress)
+                : this.calcProgress(total, complete)
             }
           })
 
-          if (!existFlag) {
-            tempList.push(newTask)
-          }
-        })
+          this.downloadingTaskList = res
 
-        this.downloadList = tempList
-      })
+          return res
+        })
+        .then((res) => {
+          if (res.length === 0) {
+            return
+          }
+
+          request(this.extData.completeAPI.requestInfo, firstFlag).then(
+            (completeList) => {
+              const { taskList, taskId, taskName, period } =
+                this.extData.completeAPI.fields
+
+              if (taskList) {
+                completeList = getPropertyValue(completeList, taskList)
+              }
+
+              this.completeTaskList = completeList.map((element) => {
+                return {
+                  taskId: getPropertyValue(element, taskId),
+                  taskName: getPropertyValue(element, taskName),
+                  period: getPropertyValue(element, period)
+                }
+              })
+            }
+          )
+        })
     },
     calcProgress: function (totalLength, completedLength) {
       const progress = completedLength / totalLength
