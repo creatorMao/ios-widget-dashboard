@@ -29,26 +29,23 @@
         <div class="speed">{{ this.downloadingTaskList[0].downloadSpeed }}</div>
       </div>
       <!-- 无正在下载，有已完成记录 -->
-      <div v-if="!downloadingFlag && havaCompleteFlag" class="pendingMore">
+      <div
+        v-if="!downloadingFlag && havaCompleteFlag"
+        class="pendingMore completeMore"
+      >
         <div class="container">
           <div
-            v-for="item in completeTaskList.slice(0, 3)"
+            v-for="(item, index) in completeTaskList.slice(0, 5)"
             :key="item.taskId"
             class="task-item"
           >
             <div class="task-info">
               <div class="task-name ellipsis">
-                {{ item.taskName }}
+                {{ `${index + 1}. ${item.taskName}` }}
               </div>
               <div class="task-downloadSpeed ellipsis">
                 {{ item.period }}
               </div>
-            </div>
-            <div class="progress">
-              <div
-                class="progress-charts"
-                :style="`width:${item.progress}%`"
-              ></div>
             </div>
           </div>
         </div>
@@ -57,13 +54,13 @@
       <div v-if="overOneDownloadingFlag" class="pendingMore">
         <div class="container">
           <div
-            v-for="item in downloadingTaskList.slice(0, 3)"
+            v-for="(item, index) in downloadingTaskList.slice(0, 3)"
             :key="item.taskId"
             class="task-item"
           >
             <div class="task-info">
               <div class="task-name ellipsis">
-                {{ item.taskName }}
+                {{ `${index + 1}. ${item.taskName}` }}
               </div>
               <div class="task-downloadSpeed ellipsis">
                 {{ item.downloadSpeed }}
@@ -86,7 +83,7 @@
 import Header from '@/components/Base/Header.vue'
 import { request } from '@/utils/request.js'
 import { getPropertyValue } from '@/utils/objectHelper.js'
-import { formatDownloadSpeed } from '@/utils/unitHelper.js'
+import { formatDownloadSpeed, formatSeconds } from '@/utils/unitHelper.js'
 
 export default {
   name: 'DashboardDownloadInfo',
@@ -144,7 +141,6 @@ export default {
             progress,
             completedLength,
             totalLength,
-            uploadSpeed,
             downloadSpeed,
             speedUnit,
             speedFormatUnit
@@ -159,15 +155,12 @@ export default {
             const complete = getPropertyValue(element, completedLength)
 
             return {
-              taskName: getPropertyValue(element, taskName),
+              taskName: this.formatTaskName(
+                getPropertyValue(element, taskName)
+              ),
               taskId: getPropertyValue(element, taskId),
               downloadSpeed: formatDownloadSpeed(
                 getPropertyValue(element, downloadSpeed) || 0,
-                speedUnit,
-                speedFormatUnit
-              ),
-              uploadSpeed: formatDownloadSpeed(
-                getPropertyValue(element, uploadSpeed) || 0,
                 speedUnit,
                 speedFormatUnit
               ),
@@ -182,7 +175,7 @@ export default {
           return res
         })
         .then((res) => {
-          if (res.length === 0) {
+          if (res.length > 0) {
             return
           }
 
@@ -198,8 +191,10 @@ export default {
               this.completeTaskList = completeList.map((element) => {
                 return {
                   taskId: getPropertyValue(element, taskId),
-                  taskName: getPropertyValue(element, taskName),
-                  period: getPropertyValue(element, period)
+                  taskName: this.formatTaskName(
+                    getPropertyValue(element, taskName)
+                  ),
+                  period: formatSeconds(getPropertyValue(element, period))
                 }
               })
             }
@@ -209,6 +204,10 @@ export default {
     calcProgress: function (totalLength, completedLength) {
       const progress = completedLength / totalLength
       return isNaN(progress) ? 0 : (progress * 100).toFixed(0)
+    },
+    formatTaskName: function (value) {
+      const splitList = value.split('/')
+      return splitList[splitList.length - 1]
     }
   }
 }
@@ -229,7 +228,7 @@ export default {
     position: absolute;
     right: 0.5em;
     top: 0.1em;
-    font-size: 2.7em;
+    font-size: 2.6em;
     color: @green;
   }
   .content {
@@ -257,7 +256,7 @@ export default {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          margin-top: 0.5em;
+          margin-top: 0.4em;
           font-size: 0.9em;
           align-items: center;
           .task-info {
@@ -283,6 +282,22 @@ export default {
               height: 0.4em;
               background-color: @green;
               border-radius: 0.2em;
+            }
+          }
+        }
+      }
+    }
+    .completeMore {
+      .container {
+        .task-item {
+          .task-info {
+            .task-name {
+              width: 80%;
+              text-align: left;
+            }
+            .task-downloadSpeed {
+              width: 20%;
+              text-align: right;
             }
           }
         }

@@ -24,6 +24,25 @@ const formatDownloadSpeed = (value, unit, formatUnit) => {
   return `${res.toFixed(1)} ${formatUnit}/s`
 }
 
+const formatSeconds = (second) => {
+  if (!second) {
+    return ''
+  }
+
+  if (second < 60) {
+    return `${second}s`
+  }
+
+  if (second > 60 && second < 3600) {
+    return `${(second / 60).toFixed(1)}m`
+  }
+
+  if (second > 3600) {
+    return `${(second / 3600).toFixed(1)}h`
+  }
+}
+
 export {
-  formatDownloadSpeed
+  formatDownloadSpeed,
+  formatSeconds
 }
