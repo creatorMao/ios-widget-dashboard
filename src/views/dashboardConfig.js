@@ -189,23 +189,82 @@ const config = [
           title: 'aria2下载'
         },
         extData: {
-          requestInfo: {
-            url: 'http://192.168.1.11:6800/jsonrpc',
-            config: {
-              method: 'post',
-              data: {
+          downloadingAPI: {
+            requestInfo: {
+              url: 'http://192.168.1.11:6800/jsonrpc',
+              config: {
+                method: 'post',
+                data: {
+                  id: 'xxxxxxxxxxx',
+                  jsonrpc: '2.0',
+                  method: 'aria2.tellActive',
+                  params: ['token:1234', [
+                    'gid',
+                    'totalLength',
+                    'completedLength',
+                    'uploadSpeed',
+                    'downloadSpeed',
+                    'files',
+                    'connections',
+                    'numSeeders',
+                    'seeder',
+                    'status',
+                    'errorCode',
+                    'verifiedLength',
+                    'verifyIntegrityPending'
+                  ]]
+                }
               }
+            },
+            fields: {
+              taskList: 'result',
+              taskId: 'gid',
+              taskName: 'files[0].path',
+              progress: '',
+              completedLength: 'completedLength',
+              totalLength: 'totalLength',
+              downloadSpeed: 'downloadSpeed',
+              speedUnit: 'B',
+              speedFormatUnit: 'KB'
             }
           },
-          resultStructure: {
-            list: '.result',
+          completeAPI: {
+            requestInfo: {
+              url: 'http://192.168.1.11:6800/jsonrpc',
+              config: {
+                method: 'post',
+                data: {
+                  id: 'xxxxxxxxxxx',
+                  jsonrpc: '2.0',
+                  method: 'aria2.tellStopped',
+                  params: [
+                    'token:1234',
+                    -1,
+                    1000,
+                    [
+                      'gid',
+                      'totalLength',
+                      'completedLength',
+                      'uploadSpeed',
+                      'downloadSpeed',
+                      'connections',
+                      'numSeeders',
+                      'files',
+                      'seeder',
+                      'status',
+                      'errorCode',
+                      'verifiedLength',
+                      'verifyIntegrityPending'
+                    ]
+                  ]
+                }
+              }
+            },
             fields: {
-              fileName: '.fileName',
-              fileId: '.gid',
-              downloadSpeed: '.downloadSpeed',
-              uploadSpeed: '.uploadSpeed',
-              completedLength: '.completedLength',
-              totalLength: '.totalLength'
+              taskList: 'result',
+              taskId: 'gid',
+              taskName: 'files[0].path',
+              period: ''
             }
           }
         }
@@ -224,6 +283,44 @@ const config = [
               }
             },
             valueStructurePath: '.values.On'
+          }
+        }
+      },
+      {
+        id: '99911111111',
+        componentName: 'DownloadInfo',
+        size: 'default',
+        interval: 1000 * 10,
+        headerData: {
+          title: '迅雷下载'
+        },
+        extData: {
+          downloadingAPI: {
+            requestInfo: {
+              url: 'http://192.168.1.11:9090/?url=http://192.168.1.183:3000/task/downloading'
+            },
+            fields: {
+              taskList: '',
+              taskId: 'taskId',
+              taskName: 'fileName',
+              progress: 'progress',
+              completedLength: '',
+              totalLength: '',
+              downloadSpeed: 'downloadSpeed',
+              speedUnit: '',
+              speedFormatUnit: ''
+            }
+          },
+          completeAPI: {
+            requestInfo: {
+              url: 'http://192.168.1.11:9090/?url=http://192.168.1.183:3000/task/complete'
+            },
+            fields: {
+              taskList: '',
+              taskId: 'taskId',
+              taskName: 'fileName',
+              period: 'period'
+            }
           }
         }
       }
