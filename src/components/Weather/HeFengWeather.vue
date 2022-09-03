@@ -106,7 +106,7 @@ export default {
       }).then((result) => {
         this.hourWeatherList = result.hourly.map((hour) => {
           const item = {}
-          item.hour = this.$dayjs(hour.fxTime).format('h')
+          item.hour = this.$dayjs(hour.fxTime).format('H')
           item.text = hour.text
           return item
         })
