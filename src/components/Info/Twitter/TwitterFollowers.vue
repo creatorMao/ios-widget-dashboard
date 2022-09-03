@@ -47,11 +47,11 @@ export default {
     },
     changeText: function () {
       const change = this.status.FOLLOWERS_COUNT_CHANGE
-      const changeIcon = parseInt(change) > 0 ? '↑' : '↓'
-      let changeText = ''
+      // const changeIcon = parseInt(change) > 0 ? '↑' : '↓'
+      const changeText = ''
       const changeAbs = Math.abs(change)
       if (changeAbs !== 0) {
-        changeText = changeIcon + changeAbs
+        // changeText = changeIcon + changeAbs
       }
       return changeText
     }
