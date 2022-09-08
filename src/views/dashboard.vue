@@ -14,6 +14,7 @@
           :is="item.componentName"
           :headerData="item.headerData"
           :extData="item.extData"
+          :childrenComponents="item.childrenComponents"
         ></component>
       </BaseComponent>
     </div>
@@ -25,6 +26,7 @@
 
 <script>
 import BaseComponent from '@/components/Base/BaseComponent.vue'
+import Group from '@/components/Base/Group.vue'
 import Battery from '@/components/Base/Battery.vue'
 import CountDown from '@/components/Date/CountDown.vue'
 import CommemorationDate from '@/components/Date/CommemorationDate.vue'
@@ -44,6 +46,7 @@ export default {
   name: 'DashBoard',
   components: {
     BaseComponent,
+    Group,
     Battery,
     DownloadInfo,
     CountDown,
