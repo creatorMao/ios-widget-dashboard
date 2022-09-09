@@ -29,7 +29,7 @@ export const request = function (requestInfo, firstFlag) {
       )
       .catch((res) => {
         console.log(res)
-        // return res
+        return res
       })
   } else {
     // websocket
