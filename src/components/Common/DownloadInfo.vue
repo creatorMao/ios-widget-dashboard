@@ -150,6 +150,10 @@ export default {
             res = getPropertyValue(res, taskList)
           }
 
+          if (!Array.isArray(res)) {
+            return []
+          }
+
           res = res.map((element) => {
             const total = getPropertyValue(element, totalLength)
             const complete = getPropertyValue(element, completedLength)
@@ -186,6 +190,10 @@ export default {
 
               if (taskList) {
                 completeList = getPropertyValue(completeList, taskList)
+              }
+
+              if (!Array.isArray(completeList)) {
+                return
               }
 
               this.completeTaskList = completeList.map((element) => {
