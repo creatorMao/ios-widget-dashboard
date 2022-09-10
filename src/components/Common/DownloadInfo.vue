@@ -40,10 +40,14 @@
             class="task-item"
           >
             <div class="task-info">
-              <div class="task-name ellipsis">
+              <div
+                :class="`task-name ellipsis ${
+                  item.period ? '' : 'task-name-full'
+                }`"
+              >
                 {{ `${index + 1}. ${item.taskName}` }}
               </div>
-              <div class="task-downloadSpeed ellipsis">
+              <div v-if="item.period" class="task-downloadSpeed ellipsis">
                 {{ item.period }}
               </div>
             </div>
@@ -302,6 +306,9 @@ export default {
             .task-name {
               width: 80%;
               text-align: left;
+            }
+            .task-name-full {
+              width: 100%;
             }
             .task-downloadSpeed {
               width: 20%;
