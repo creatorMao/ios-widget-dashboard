@@ -16,4 +16,9 @@ body,
   height: 100%;
   background-color: #eeeeee;
 }
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 </style>

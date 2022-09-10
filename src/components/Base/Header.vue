@@ -1,7 +1,7 @@
 <template>
   <div class="title" v-if="headerData.title">
     <img :src="headerData.iconUrl" alt="" v-if="headerData.iconUrl" />
-    <span :style="{ color: headerData.titleColor }">{{
+    <span :style="{ color: headerData.titleColor }" class="ellipsis">{{
       headerData.title
     }}</span>
   </div>
