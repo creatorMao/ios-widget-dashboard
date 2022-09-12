@@ -108,7 +108,7 @@ export default {
     .deadline {
       padding: 0.4em 1em;
       margin-top: 0.3em;
-      font-size: 0.7em;
+      font-size: 0.8em;
       padding-left: 0;
       padding-top: 0;
       .day-text {
