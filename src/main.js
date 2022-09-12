@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Octokit } from '@octokit/core'
 import * as echarts from 'echarts'
 import './css/variable.less'
+import './css/common.less'
 // 组件
 import BaseComponent from '@/components/Base/BaseComponent.vue'
 import Group from '@/components/Base/Group.vue'
