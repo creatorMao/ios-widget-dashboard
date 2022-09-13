@@ -13,7 +13,7 @@
 <script>
 import CommonCount from '@/components/Common/CommonCount.vue'
 export default {
-  name: 'DashboardGithubRepoStars',
+  name: 'GitHubRepoCloneTraffic',
   props: ['extData'],
   components: {
     CommonCount

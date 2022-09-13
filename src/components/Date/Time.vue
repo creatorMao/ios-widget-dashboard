@@ -14,7 +14,7 @@
 import { getWeekDay } from '@/utils/date.js'
 
 export default {
-  name: 'DashboardTime',
+  name: 'Time',
 
   data() {
     return {

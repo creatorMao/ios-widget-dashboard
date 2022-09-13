@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'DashboardGithubRepoStars',
+  name: 'GitHubRepoStars',
   props: ['extData'],
   data() {
     return {

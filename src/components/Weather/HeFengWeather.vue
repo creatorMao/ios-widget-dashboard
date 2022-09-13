@@ -34,7 +34,7 @@
 import { request } from '@/utils/request.js'
 import 'qweather-icons/font/qweather-icons.css'
 export default {
-  name: 'DashboardHeFengWeather',
+  name: 'HeFengWeather',
   props: ['extData'],
   data() {
     return {

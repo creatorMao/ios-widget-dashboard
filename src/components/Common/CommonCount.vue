@@ -17,7 +17,7 @@
 import { request } from '@/utils/request.js'
 
 export default {
-  name: 'DashboardCommonCount',
+  name: 'CommonCount',
   props: ['extData', 'value', 'childFlag', 'updateTimeShort'],
   data() {
     return {

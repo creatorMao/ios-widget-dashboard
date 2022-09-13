@@ -26,7 +26,7 @@ import fans from '@/assets/fans.png'
 Vue.use(Switch)
 
 export default {
-  name: 'DashboardSwitchButton',
+  name: 'SwitchButton',
   props: ['extData'],
   computed: {
     switchIcon() {

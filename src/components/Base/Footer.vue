@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'DashboardFooter',
+  name: 'Footer',
 
   data() {
     return {}

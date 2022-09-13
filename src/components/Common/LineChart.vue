@@ -25,7 +25,7 @@
 import { request } from '@/utils/request.js'
 
 export default {
-  name: 'DashboardTemperature',
+  name: 'LineChart',
   props: ['extData'],
   data() {
     return {

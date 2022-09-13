@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'DashboardHeader',
+  name: 'Header',
   props: ['headerData'],
   data() {
     return {}

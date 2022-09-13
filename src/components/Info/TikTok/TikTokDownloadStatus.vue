@@ -33,7 +33,7 @@ import tiktokIcon from '@/assets/tiktok.png'
 import { request } from '@/utils/request.js'
 
 export default {
-  name: 'DashboardTikTokDownloadStatus',
+  name: 'TikTokDownloadStatus',
   components: {
     Header,
     Footer

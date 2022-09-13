@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'DashboardGroup',
+  name: 'Group',
   props: ['childrenComponents'],
   data() {
     return {

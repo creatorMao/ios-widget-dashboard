@@ -90,7 +90,7 @@ import { getPropertyValue } from '@/utils/objectHelper.js'
 import { formatDownloadSpeed, formatSeconds } from '@/utils/unitHelper.js'
 
 export default {
-  name: 'DashboardDownloadInfo',
+  name: 'DownloadInfo',
   components: { Header },
   props: ['extData', 'headerData'],
   data() {

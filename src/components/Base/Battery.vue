@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'DashboardBattery',
+  name: 'Battery',
 
   data() {
     return {
