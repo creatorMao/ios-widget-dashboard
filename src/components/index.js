@@ -35,7 +35,6 @@ const componentList = [
 export default {
   install(Vue) {
     componentList.forEach((item) => {
-      console.log(item)
       Vue.component(item.name, item)
     })
   }
