@@ -8,6 +8,7 @@ import * as echarts from 'echarts'
 import './css/variable.less'
 import './css/common.less'
 import globalComponents from '@/components/index.js'
+import store from '@/store/index.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$dayjs = dayjs
@@ -18,5 +19,6 @@ Vue.use(globalComponents)
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
