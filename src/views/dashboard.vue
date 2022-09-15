@@ -1,11 +1,11 @@
 <template>
   <div
     class="dashboard"
-    :style="{ background: `url('${dashboardConfig.backgroundImg}')` }"
+    :style="{ background: `url('${currentDashboardConfig.backgroundImg}')` }"
   >
     <div class="dashboard-content">
       <BaseComponent
-        v-for="item in dashboardConfig.componentList"
+        v-for="item in currentDashboardConfig.componentList"
         :key="item.id"
         :size="item.size"
         :interval="item.interval"
@@ -25,29 +25,27 @@
 </template>
 
 <script>
-import { config } from '@/views/dashboardConfig.js'
-
 export default {
   name: 'DashBoard',
   components: {},
   props: ['configId'],
   created() {
-    this.config = config
+    this.dashboardConfig = this.$store.state.dashboardConfig
   },
   data() {
     return {
-      config: {}
+      dashboardConfig: {}
     }
   },
   beforeDestroy() {},
 
   mounted() {},
   computed: {
-    dashboardConfig() {
-      let resultConfig = config[0]
+    currentDashboardConfig() {
+      let resultConfig = this.dashboardConfig[0]
 
       if (this.configId) {
-        config.some((element) => {
+        this.dashboardConfig.some((element) => {
           if (element.id === this.configId) {
             resultConfig = element
             return true
