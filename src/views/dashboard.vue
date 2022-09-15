@@ -25,22 +25,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'DashBoard',
   components: {},
   props: ['configId'],
-  created() {
-    this.dashboardConfig = this.$store.state.dashboardConfig
-  },
+  created() {},
   data() {
-    return {
-      dashboardConfig: {}
-    }
+    return {}
   },
   beforeDestroy() {},
-
   mounted() {},
   computed: {
+    ...mapState(['dashboardConfig']),
     currentDashboardConfig() {
       let resultConfig = this.dashboardConfig[0]
 
