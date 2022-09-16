@@ -1,25 +1,27 @@
 <template>
-  <div
-    class="dashboard"
-    :style="{ background: `url('${currentDashboardConfig.backgroundImg}')` }"
-  >
-    <div class="dashboard-content">
-      <BaseComponent
-        v-for="item in currentDashboardConfig.componentList"
-        :key="item.id"
-        :size="item.size"
-        :interval="item.interval"
-      >
-        <component
-          :is="item.componentName"
-          :headerData="item.headerData"
-          :extData="item.extData"
-          :childrenComponents="item.childrenComponents"
-        ></component>
-      </BaseComponent>
-    </div>
-    <div class="battery">
-      <Battery></Battery>
+  <div id="app">
+    <div
+      class="dashboard"
+      :style="{ background: `url('${currentDashboardConfig.backgroundImg}')` }"
+    >
+      <div class="dashboard-content">
+        <BaseComponent
+          v-for="item in currentDashboardConfig.componentList"
+          :key="item.id"
+          :size="item.size"
+          :interval="item.interval"
+        >
+          <component
+            :is="item.componentName"
+            :headerData="item.headerData"
+            :extData="item.extData"
+            :childrenComponents="item.childrenComponents"
+          ></component>
+        </BaseComponent>
+      </div>
+      <div class="battery">
+        <Battery></Battery>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +62,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
+body,
+#app {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #eeeeee;
+}
+
 .dashboard {
   height: 100%;
   background-size: cover;
