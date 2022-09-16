@@ -3,7 +3,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const dashboardConfig = {
+  namespaced: true,
   actions: {
 
   },
@@ -11,8 +12,14 @@ export default new Vuex.Store({
 
   },
   state: {
-    dashboardConfig: config
+    config
   },
   getters: {
+  }
+}
+
+export default new Vuex.Store({
+  modules: {
+    dashboardConfig
   }
 })

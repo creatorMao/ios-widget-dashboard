@@ -37,12 +37,12 @@ export default {
   beforeDestroy() {},
   mounted() {},
   computed: {
-    ...mapState(['dashboardConfig']),
+    ...mapState('dashboardConfig', ['config']),
     currentDashboardConfig() {
-      let resultConfig = this.dashboardConfig[0]
+      let resultConfig = this.config[0]
 
       if (this.configId) {
-        this.dashboardConfig.some((element) => {
+        this.config.some((element) => {
           if (element.id === this.configId) {
             resultConfig = element
             return true

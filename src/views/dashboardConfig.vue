@@ -1,7 +1,7 @@
 <template>
   <div>
     <pre>
-      {{ JSON.stringify(dashboardConfig, null, '\t') }}
+      {{ JSON.stringify(config, null, '\t') }}
     </pre>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['dashboardConfig'])
+    ...mapState('dashboardConfig', ['config'])
   },
   mounted() {},
 
