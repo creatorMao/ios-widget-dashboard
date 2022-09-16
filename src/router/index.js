@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '@/views/dashboard.vue'
+import DashboardConfig from '@/views/dashboardConfig.vue'
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,10 @@ const routes = [
   {
     path: '/dashboard',
     component: Dashboard
+  },
+  {
+    path: '/dashboard/config',
+    component: DashboardConfig
   },
   {
     path: '/dashboard/:configId',
