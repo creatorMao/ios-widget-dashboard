@@ -23,12 +23,10 @@ export default {
         this.refresh()
       }, interval)
     } else {
-      // 未设置定时器，则每天凌晨刷新一次。
+      // 未设置定时器，则每小时刷新一次
       this.timer = setInterval(() => {
-        if (this.$dayjs().format('HH-mm') === '00-00') {
-          this.refresh()
-        }
-      }, 5000)
+        this.refresh()
+      }, 1000 * 60 * 60)
     }
   },
   methods: {
