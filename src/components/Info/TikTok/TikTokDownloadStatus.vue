@@ -13,6 +13,10 @@
         <div class="value">{{ status.PHOTO_COUNT }}</div>
       </div>
       <div class="item">
+        <div class="title">异常</div>
+        <div class="value">{{ status.FAIL_TOTAL }}</div>
+      </div>
+      <div class="item">
         <div class="title">耗时</div>
         <div class="value">
           {{ (status.DOWNLOAD_TIME_COST / 60).toFixed(0) }}
@@ -61,10 +65,8 @@ export default {
     }
   },
   methods: {
-    refresh: function (firstFlag) {
-      request(this.extData.requestInfo, firstFlag).then((result) => {
-        this.status = result
-      })
+    refresh: async function (firstFlag) {
+      this.status = (await request(this.extData.requestInfo, firstFlag)).data.parsedContent
     }
   }
 }
