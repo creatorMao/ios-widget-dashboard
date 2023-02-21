@@ -1,16 +1,34 @@
 <template>
   <div :class="`component component-${size || 'default'}`">
-    <slot name="default" :headerData="headerData" :extData="extData"></slot>
+    <slot
+      v-if="!sonComponenetState.errorFlag"
+      name="default"
+      :headerData="headerData"
+      :extData="extData"
+    ></slot>
+    <Error
+      v-show="sonComponenetState.errorFlag"
+      :msg="sonComponenetState.msg"
+    ></Error>
   </div>
 </template>
 
 <script>
+import Error from '@/components/Base/Error.vue'
+
 export default {
   name: 'BaseComponent',
   props: ['size', 'interval', 'headerData', 'extData'],
+  components: {
+    Error
+  },
   data() {
     return {
-      timer: null
+      timer: null,
+      sonComponenetState: {
+        errorFlag: false,
+        msg: ''
+      }
     }
   },
   mounted() {

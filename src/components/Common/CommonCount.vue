@@ -28,16 +28,20 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    refresh: function (firstFlag, { updateTimeShort } = {}) {
+    refresh: async function (firstFlag, { updateTimeShort } = {}) {
       this.updateTime = updateTimeShort
 
       if (this.childFlag) {
         return
       }
 
-      request(this.extData.requestInfo, firstFlag).then((res) => {
-        this.currentValue = res
-      })
+      try {
+        this.currentValue = await request(this.extData.requestInfo, firstFlag)
+        this.$parent.sonComponenetState.errorFlag = false
+      } catch (e) {
+        this.$parent.sonComponenetState.errorFlag = true
+        this.$parent.sonComponenetState.msg = e.message
+      }
     }
   }
 }
