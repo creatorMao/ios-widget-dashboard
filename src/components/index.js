@@ -15,6 +15,7 @@ import TikTokDownloadStatus from '@/components/Info/TikTok/TikTokDownloadStatus.
 import HeFengWeather from '@/components/Weather/HeFengWeather.vue'
 import Header from '@/components/Base/Header.vue'
 import Footer from '@/components/Base/Footer.vue'
+import DemoComponent from '@/components/DemoComponent.vue'
 
 const componentList = [
   BaseComponent,
@@ -33,7 +34,8 @@ const componentList = [
   TikTokDownloadStatus,
   HeFengWeather,
   Header,
-  Footer
+  Footer,
+  DemoComponent
 ]
 
 export default {
