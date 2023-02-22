@@ -1,6 +1,13 @@
 <template>
   <div class="container">
-    <Header :headerData="headerConfig"></Header>
+    <Header :headerData="headerConfig">
+      <template v-slot:right>
+        <span>进度:</span>
+        <span>{{ status.CURRENT }}</span>
+        <span>/</span>
+        <span>{{ status.TOTAL }}</span>
+      </template>
+    </Header>
     <div class="content">
       <div class="item">
         <div class="title">视频</div>
@@ -46,14 +53,17 @@ export default {
   data() {
     return {
       headerConfig: {
-        title: '抖音增量下载',
+        title: '抖音下载',
         iconUrl: tiktokIcon
       },
       status: {
-        PHOTO_COUNT: '12', // TODO DELETE
-        VIDEO_COUNT: '11',
-        DOWNLOAD_TIME_COST: '111',
-        IMP_TIME: '2020-12-11'
+        PHOTO_COUNT: '',
+        VIDEO_COUNT: '',
+        FAIL_TOTAL: '',
+        DOWNLOAD_TIME_COST: '',
+        CURRENT: '',
+        TOTAL: '',
+        IMP_TIME: ''
       }
     }
   },
@@ -66,7 +76,15 @@ export default {
   },
   methods: {
     refresh: async function (firstFlag) {
-      this.status = (await request(this.extData.requestInfo, firstFlag)).data.parsedContent
+      try {
+        this.status = (
+          await request(this.extData.requestInfo, firstFlag)
+        ).data.parsedContent
+
+        this.$parent.hideError()
+      } catch (e) {
+        this.$parent.showError(e.message)
+      }
     }
   }
 }

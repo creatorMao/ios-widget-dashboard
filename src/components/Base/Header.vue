@@ -1,9 +1,14 @@
 <template>
   <div class="title" v-if="headerData.title">
-    <img :src="headerData.iconUrl" alt="" v-if="headerData.iconUrl" />
-    <span :style="{ color: headerData.titleColor }" class="ellipsis">{{
-      headerData.title
-    }}</span>
+    <div class="flex-row-center left">
+      <img :src="headerData.iconUrl" alt="" v-if="headerData.iconUrl" />
+      <span :style="{ color: headerData.titleColor }" class="ellipsis">{{
+        headerData.title
+      }}</span>
+    </div>
+    <div class="right flex-row-center">
+      <slot name="right"></slot>
+    </div>
   </div>
 </template>
 
@@ -26,6 +31,7 @@ export default {
   display: flex;
   align-items: center;
   font-size: 0.9em;
+  justify-content: space-between;
   img {
     width: 1em;
     height: 1em;
