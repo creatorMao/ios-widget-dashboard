@@ -7,9 +7,9 @@
         <span class="unit-text">{{ extData.unitText }}</span>
       </div>
     </div>
-    <div class="footer">
+    <Footer>
       <div class="update-time">更新于{{ updateTimeShort || updateTime }}</div>
-    </div>
+    </Footer>
   </div>
 </template>
 
@@ -62,12 +62,9 @@ export default {
         font-size: 1.2em;
       }
     }
-    .footer {
-      text-align: right;
-      .update-time {
-        font-size: 0.7em;
-      }
-    }
+  }
+  .footer {
+    text-align: right;
   }
 }
 </style>

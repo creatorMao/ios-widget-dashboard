@@ -22,14 +22,13 @@
 
 <script>
 import Header from '@/components/Base/Header.vue'
-import Footer from '@/components/Base/Footer.vue'
 import twitterIcon from '@/assets/twitter.png'
 import { request } from '@/utils/request.js'
 
 export default {
   name: 'TwitterFollowers',
   props: ['headerData', 'extData'],
-  components: { Header, Footer },
+  components: { Header },
   data() {
     return {
       twitterIcon,
