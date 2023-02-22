@@ -37,10 +37,9 @@ export default {
 
       try {
         this.currentValue = await request(this.extData.requestInfo, firstFlag)
-        this.$parent.sonComponenetState.errorFlag = false
+        this.$parent.hideError()
       } catch (e) {
-        this.$parent.sonComponenetState.errorFlag = true
-        this.$parent.sonComponenetState.msg = e.message
+        this.$parent.showError(e.message)
       }
     }
   }

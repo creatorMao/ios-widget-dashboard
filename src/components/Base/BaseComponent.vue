@@ -62,6 +62,13 @@ export default {
           item.refresh(false, this.getUpdateTime())
         }
       })
+    },
+    showError: function (msg) {
+      this.sonComponenetState.errorFlag = true
+      this.sonComponenetState.msg = msg
+    },
+    hideError: function () {
+      this.sonComponenetState.errorFlag = false
     }
   },
   beforeDestroy() {
