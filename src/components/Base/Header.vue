@@ -1,12 +1,12 @@
 <template>
   <div class="title" v-if="headerData.title">
-    <div class="flex-row-center left">
+    <div class="flex-row-ycenter left">
       <img :src="headerData.iconUrl" alt="" v-if="headerData.iconUrl" />
       <span :style="{ color: headerData.titleColor }" class="ellipsis">{{
         headerData.title
       }}</span>
     </div>
-    <div class="right flex-row-center">
+    <div class="right flex-row-ycenter">
       <slot name="right"></slot>
     </div>
   </div>
