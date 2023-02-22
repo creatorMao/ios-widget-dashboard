@@ -13,6 +13,7 @@ import GitHubRepoCloneTraffic from '@/components/Info/Github/GitHubRepoCloneTraf
 import TwitterFollowers from '@/components/Info/Twitter/TwitterFollowers.vue'
 import TikTokDownloadStatus from '@/components/Info/TikTok/TikTokDownloadStatus.vue'
 import HeFengWeather from '@/components/Weather/HeFengWeather.vue'
+import Header from '@/components/Base/Header.vue'
 
 const componentList = [
   BaseComponent,
@@ -29,7 +30,8 @@ const componentList = [
   GitHubRepoCloneTraffic,
   TwitterFollowers,
   TikTokDownloadStatus,
-  HeFengWeather
+  HeFengWeather,
+  Header
 ]
 
 export default {
