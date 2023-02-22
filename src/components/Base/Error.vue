@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="header">组件异常</div>
+    <Header :headerData="{ title: '组件异常' }"></Header>
     <div class="content">{{ msg }}</div>
   </div>
 </template>
