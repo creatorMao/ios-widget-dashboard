@@ -1,9 +1,9 @@
 <template>
   <div class="container">
+    <Header
+      :headerData="{ title: `${extData.title}(${extData.unitText})` }"
+    ></Header>
     <div class="content">
-      <div class="header">
-        <span>{{ extData.title }}({{ extData.unitText }})</span>
-      </div>
       <div class="chart">
         <div ref="chart-content"></div>
       </div>

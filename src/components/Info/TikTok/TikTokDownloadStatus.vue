@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import Header from '@/components/Base/Header.vue'
 import Footer from '@/components/Base/Footer.vue'
 import tiktokIcon from '@/assets/tiktok.png'
 import { request } from '@/utils/request.js'
@@ -46,7 +45,6 @@ import { request } from '@/utils/request.js'
 export default {
   name: 'TikTokDownloadStatus',
   components: {
-    Header,
     Footer
   },
   props: ['headerData', 'extData'],

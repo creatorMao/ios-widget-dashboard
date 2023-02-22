@@ -84,14 +84,13 @@
 </template>
 
 <script>
-import Header from '@/components/Base/Header.vue'
 import { request } from '@/utils/request.js'
 import { getPropertyValue } from '@/utils/objectHelper.js'
 import { formatDownloadSpeed, formatSeconds } from '@/utils/unitHelper.js'
 
 export default {
   name: 'DownloadInfo',
-  components: { Header },
+  components: {},
   props: ['extData', 'headerData'],
   data() {
     return {

@@ -1,14 +1,14 @@
 <template>
   <div class="container">
+    <Header :headerData="{ title: extData.title }"></Header>
     <div class="content">
-      <div class="title">{{ extData.title }}</div>
-      <div class="footer">
-        <div class="value-wrap">
-          <span class="value">{{ value || currentValue || '' }}</span>
-          <span class="unit-text">{{ extData.unitText }}</span>
-        </div>
-        <div class="update-time">更新于{{ updateTimeShort || updateTime }}</div>
+      <div class="value-wrap flex-row-xright-ybottom">
+        <span class="value">{{ value || currentValue || '' }}</span>
+        <span class="unit-text">{{ extData.unitText }}</span>
       </div>
+    </div>
+    <div class="footer">
+      <div class="update-time">更新于{{ updateTimeShort || updateTime }}</div>
     </div>
   </div>
 </template>
@@ -53,20 +53,17 @@ export default {
     & > div {
       width: 100%;
     }
-    .title {
-      text-align: left;
-      font-size: 0.9em;
+    .value-wrap {
+      height: 100%;
+      .value {
+        font-size: 2.6em;
+      }
+      .unit-text {
+        font-size: 1.2em;
+      }
     }
     .footer {
       text-align: right;
-      .value-wrap {
-        .value {
-          font-size: 2.6em;
-        }
-        .unit-text {
-          font-size: 1.2em;
-        }
-      }
       .update-time {
         font-size: 0.7em;
       }
