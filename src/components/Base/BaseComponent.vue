@@ -92,6 +92,7 @@ export default {
   overflow: hidden;
   word-break: break-all;
   & > .container {
+    position: relative;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

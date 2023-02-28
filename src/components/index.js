@@ -16,6 +16,8 @@ import HeFengWeather from '@/components/Weather/HeFengWeather.vue'
 import Header from '@/components/Base/Header.vue'
 import Footer from '@/components/Base/Footer.vue'
 import DemoComponent from '@/components/DemoComponent.vue'
+import SSRSubscribeInfo from '@/components/Info/Subscribe/SSRSubscribeInfo.vue'
+import VerticalProgress from '@/components/Base/VerticalProgress.vue'
 
 const componentList = [
   BaseComponent,
@@ -35,7 +37,9 @@ const componentList = [
   HeFengWeather,
   Header,
   Footer,
-  DemoComponent
+  DemoComponent,
+  SSRSubscribeInfo,
+  VerticalProgress
 ]
 
 export default {

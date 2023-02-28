@@ -14,14 +14,18 @@ const unitList = {
   TB
 }
 
-const formatDownloadSpeed = (value, unit, formatUnit) => {
+const formatByte = (value, unit, formatUnit, withUnit = true) => {
   unit = unit || 'KB'
   formatUnit = formatUnit || 'KB'
   const res = (unitList[unit] * value) / unitList[formatUnit]
   if (isNaN(res)) {
     console.log(value, unit, formatUnit)
   }
-  return `${res.toFixed(1)} ${formatUnit}/s`
+  return `${res.toFixed(1)} ${withUnit ? formatUnit : ''}`
+}
+
+const formatDownloadSpeed = (value, unit, formatUnit) => {
+  return `${formatByte(value, unit, formatUnit)} / s`
 }
 
 const formatSeconds = (second) => {
@@ -43,6 +47,7 @@ const formatSeconds = (second) => {
 }
 
 export {
+  formatByte,
   formatDownloadSpeed,
   formatSeconds
 }
