@@ -35,10 +35,10 @@ export default {
   mounted() {},
   computed: {
     usedFormat: function () {
-      return formatByte(this.used, 'b', 'GB', false)
+      return formatByte(this.used, 'B', 'GB', false)
     },
     allFormat: function () {
-      return formatByte(this.all, 'b', 'GB', false)
+      return formatByte(this.all, 'B', 'GB', false)
     },
     uesdProgress: function () {
       return this.all ? ((this.used / this.all) * 100).toFixed(0) : 0
