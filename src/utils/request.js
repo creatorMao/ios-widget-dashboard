@@ -1,16 +1,13 @@
 import axios from 'axios'
 import { getPropertyValue } from '@/utils/objectHelper.js'
 
-export const request = function (requestInfo, firstFlag) {
+export const request = function (requestInfo) {
   const { type = 'http' } = requestInfo
 
   if (type === 'http') {
     const { url, config, valueStructurePath } = requestInfo
 
     if (!url) {
-      if (firstFlag) {
-        console.log('url为空,请配置!')
-      }
       return
     }
 

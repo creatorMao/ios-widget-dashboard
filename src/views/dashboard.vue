@@ -10,6 +10,8 @@
           :key="item.id"
           :size="item.size"
           :interval="item.interval"
+          :headerData="item.headerData"
+          :extData="item.extData"
         >
           <component
             :is="item.componentName"

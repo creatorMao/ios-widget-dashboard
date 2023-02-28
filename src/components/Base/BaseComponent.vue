@@ -38,12 +38,12 @@ export default {
     const interval = this.interval
     if (interval) {
       this.timer = setInterval(() => {
-        this.refresh()
+        this.refresh(false)
       }, interval)
     } else {
       // 未设置定时器，则每小时刷新一次
       this.timer = setInterval(() => {
-        this.refresh()
+        this.refresh(false)
       }, 1000 * 60 * 60)
     }
   },
@@ -56,12 +56,35 @@ export default {
         updateTimeShort: updateTime.format('HH:mm:ss')
       }
     },
-    refresh: function () {
+    refresh: function (firstFlag) {
+      const { checkFlag, checkMsg } = this.check()
+      if (!checkFlag) {
+        if (firstFlag) {
+          console.log(checkMsg)
+        }
+        return
+      }
+
       this.$children.forEach((item) => {
         if (item.refresh) {
-          item.refresh(false, this.getUpdateTime())
+          item.refresh(firstFlag, this.getUpdateTime())
         }
       })
+    },
+    check() {
+      if (
+        this.extData &&
+        this.extData.requestInfo &&
+        !this.extData.requestInfo.url
+      ) {
+        return {
+          checkFlag: false,
+          checkMsg: 'url未设置'
+        }
+      }
+      return {
+        checkFlag: true
+      }
     },
     showError: function (msg) {
       this.sonComponenetState.errorFlag = true
