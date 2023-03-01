@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Header :headerData="{ title: '订阅' }">
-      <template #right>还有{{ resetDay }}天重置</template>
+      <template #right>{{ resetDayFormat }}后重置</template>
     </Header>
     <div class="content">
       <div>
@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import { request } from '@/utils/request.js'
-import { formatByte } from '@/utils/unitHelper.js'
+import { formatByte, formatDay } from '@/utils/unitHelper.js'
 export default {
   name: 'SSRSubscribeInfo',
   props: ['extData', 'headerData'],
@@ -42,12 +41,18 @@ export default {
     },
     uesdProgress: function () {
       return this.all ? ((this.used / this.all) * 100).toFixed(0) : 0
+    },
+    resetDayFormat: function () {
+      return formatDay(this.resetDay).dayText
     }
   },
   methods: {
     refresh: async function (firstFlag, { updateTimeShort }) {
       try {
-        const { data } = await request(this.extData.requestInfo, firstFlag)
+        const { data } = await this.$request(
+          this.extData.requestInfo,
+          firstFlag
+        )
         this.used = data.u + data.d
         this.all = data.transfer_enable
         this.expiredDate = data.expired_at

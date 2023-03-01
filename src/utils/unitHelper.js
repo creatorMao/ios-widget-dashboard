@@ -46,8 +46,41 @@ const formatSeconds = (second) => {
   }
 }
 
+const formatDay = (day) => {
+  day = parseInt(day) || 0
+
+  const res = {
+    dayText: '',
+    value: '',
+    unit: ''
+  }
+
+  if (day === 0) {
+    res.value = day
+    res.unit = '天'
+    res.dayText = '今日'
+  }
+
+  if (day % 365 === 0) {
+    const yearCount = day / 365
+    res.value = yearCount
+    res.unit = '年'
+    res.dayText = `${res.value}${res.unit}`
+  }
+
+  if (day % 30 === 0) {
+    const monthCount = day / 30
+    res.value = monthCount
+    res.unit = '月'
+    res.dayText = `${res.value}个${res.unit}`
+  }
+
+  return res
+}
+
 export {
   formatByte,
   formatDownloadSpeed,
-  formatSeconds
+  formatSeconds,
+  formatDay
 }
