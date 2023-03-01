@@ -9,12 +9,14 @@ import './css/variable.less'
 import './css/common.less'
 import globalComponents from '@/components/index.js'
 import store from '@/store/index.js'
+import { request } from '@/utils/request.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$dayjs = dayjs
 Vue.prototype.$http = axios
 Vue.prototype.$echarts = echarts
 Vue.prototype.$Octokit = Octokit
+Vue.prototype.$request = request
 Vue.use(globalComponents)
 
 new Vue({
