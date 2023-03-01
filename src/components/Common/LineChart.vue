@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import { request } from '@/utils/request.js'
-
 export default {
   name: 'LineChart',
   props: ['extData'],
@@ -148,27 +146,18 @@ export default {
         })
       }
     },
-    refresh: function (firstFlag) {
-      if (this.extData.requestInfo.url) {
-        request(this.extData.requestInfo, firstFlag).then((res) => {
-          res = res || 0
-          this.currentValue = res
-          this.addEchartsData({
-            value: [this.$dayjs().format('YYYY-MM-DD HH:mm:ss'), res]
-          })
-        })
-      } else {
-        // 模拟数据
-        if (firstFlag) {
-          console.log('url无效，正在模拟数据...')
-        }
-
+    refresh: async function (firstFlag) {
+      try {
+        const res =
+          (await this.$request(this.extData.requestInfo, firstFlag)) || 0
+        this.currentValue = res
         this.addEchartsData({
-          value: [
-            this.$dayjs().format('YYYY-MM-DD HH:mm:ss'),
-            Math.random() * 10
-          ]
+          value: [this.$dayjs().format('YYYY-MM-DD HH:mm:ss'), res]
         })
+
+        this.$parent.hideError()
+      } catch (e) {
+        this.$parent.showError(e.message)
       }
     }
   }
