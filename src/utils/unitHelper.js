@@ -50,9 +50,9 @@ const formatDay = (day) => {
   day = parseInt(day) || 0
 
   const res = {
-    dayText: '',
-    value: '',
-    unit: ''
+    dayText: `${day}天`,
+    value: day,
+    unit: '天'
   }
 
   if (day === 0) {
