@@ -9,6 +9,7 @@
     <Error
       v-show="sonComponenetState.errorFlag"
       :msg="sonComponenetState.msg"
+      :updateTime="sonComponenetState.updateTime.updateTimeLong"
     ></Error>
   </div>
 </template>
@@ -27,7 +28,8 @@ export default {
       timer: null,
       sonComponenetState: {
         errorFlag: false,
-        msg: ''
+        msg: '',
+        updateTime: {}
       }
     }
   },
@@ -89,6 +91,7 @@ export default {
     showError: function (msg) {
       this.sonComponenetState.errorFlag = true
       this.sonComponenetState.msg = msg
+      this.sonComponenetState.updateTime = this.getUpdateTime()
     },
     hideError: function () {
       this.sonComponenetState.errorFlag = false
