@@ -1,16 +1,16 @@
 <template>
   <div :class="`component component-${size || 'default'}`">
-    <slot
-      v-if="!sonComponenetState.errorFlag"
-      name="default"
-      :headerData="headerData"
-      :extData="extData"
-    ></slot>
     <Error
       v-show="sonComponenetState.errorFlag"
       :msg="sonComponenetState.msg"
       :updateTime="sonComponenetState.updateTime.updateTimeLong"
     ></Error>
+    <slot
+      v-show="!sonComponenetState.errorFlag"
+      name="default"
+      :headerData="headerData"
+      :extData="extData"
+    ></slot>
   </div>
 </template>
 
