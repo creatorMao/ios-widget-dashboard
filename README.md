@@ -6,8 +6,9 @@ A ios widget style dashboard
 <a href="https://creatormao.github.io/ios-widget-dashboard/#/" target="_blank">在线效果预览地址</a>
 
 
-<img src="./src/assets/example.jpg"></img>
+<img src="./src/assets/uTools_1678254045138.png"></img>
 
+<img src="./src/assets/1678253864426.jpeg"></img>
 
 ## 技术栈
 - Vue2
