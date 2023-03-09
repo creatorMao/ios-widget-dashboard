@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <Header :headerData="{ title: '组件异常' }"></Header>
+    <Header :headerData="{ title: '组件异常' }">
+      <template #right>
+        <img class="img" @click="refreshManual" src="@/assets/refresh.png" />
+      </template>
+    </Header>
     <div class="content">{{ msg }}</div>
     <Footer>
       <span>{{ updateTime }}</span>
@@ -18,8 +22,16 @@ export default {
 
   mounted() {},
 
-  methods: {}
+  methods: {
+    refreshManual: function () {
+      this.$parent.restartTimer(true)
+    }
+  }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.img {
+  cursor: pointer;
+}
+</style>

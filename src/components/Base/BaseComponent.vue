@@ -37,19 +37,29 @@ export default {
     this.refresh(true)
   },
   created() {
-    const interval = this.interval
-    if (interval) {
-      this.timer = setInterval(() => {
-        this.refresh(false)
-      }, interval)
-    } else {
-      // 未设置定时器，则每小时刷新一次
-      this.timer = setInterval(() => {
-        this.refresh(false)
-      }, 1000 * 60 * 60)
-    }
+    this.restartTimer()
   },
   methods: {
+    restartTimer: function (immediately = false) {
+      clearInterval(this.timer)
+      this.timer = null
+
+      const interval = this.interval
+      if (interval) {
+        this.timer = setInterval(() => {
+          this.refresh(false)
+        }, interval)
+      } else {
+        // 未设置定时器，则每小时刷新一次
+        this.timer = setInterval(() => {
+          this.refresh(false)
+        }, 1000 * 60 * 60)
+      }
+
+      if (immediately) {
+        this.refresh(false)
+      }
+    },
     getUpdateTime: function () {
       const updateTime = this.$dayjs()
       return {
