@@ -9,6 +9,7 @@ import CommonCount from '@/components/Common/CommonCount.vue'
 import LineChart from '@/components/Common/LineChart.vue'
 import SwitchButton from '@/components/Common/SwitchButton.vue'
 import GitHubRepoStars from '@/components/Info/Github/GitHubRepoStars.vue'
+import GitHubWorkFlow from '@/components/Info/Github/GitHubWorkFlow.vue'
 import GitHubRepoCloneTraffic from '@/components/Info/Github/GitHubRepoCloneTraffic.vue'
 import TwitterFollowers from '@/components/Info/Twitter/TwitterFollowers.vue'
 import TikTokDownloadStatus from '@/components/Info/TikTok/TikTokDownloadStatus.vue'
@@ -31,6 +32,7 @@ const componentList = [
   LineChart,
   SwitchButton,
   GitHubRepoStars,
+  GitHubWorkFlow,
   GitHubRepoCloneTraffic,
   TwitterFollowers,
   TikTokDownloadStatus,
